@@ -1,1 +1,83 @@
+h1 {
+    margin-top: 5%;
+    text-align: center;
+}
+
+.head {
+    /* The image used */
+    background-image: url("gavel.jpg");
+    padding: 65px;
+    /* Set a specific height */
+    height: 100%;
+
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+/* Place text in the middle of the image */
+.header-text {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+
+#rightcol {
+    /*background-color: #666 !important;*/
+    height: 100vh;
+    box-shadow: -3px 3px 10px #aaa;
+    color: white;
+    font-weight: 500;
+    font-family: 'Montserrat', sans-serif;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image: url("Chicago.jpg");
+}
+
+#rightcol .col-md-4{
+    display: inline; 
+}
+
+
+ #formdiv{
+        background-color: rgba(0, 0, 0, 0.4);   
+        height: 100vh;
+        padding-top:30%;
+        align-items: center;
+        padding-left: 35%;
+
+ }
+#regModal{
+    color: black;
+}
+
+#site-info{
+    text-align: center;
+}
+
+#rightcol .btn {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0px;
+  color: #fff;
+  font-size: 12px;
+  background: none;
+  padding: 10px 20px 10px 20px;
+  border: solid #fff 2px;
+  text-decoration: none;
+}
+
+#rightcol .btn:hover {
+  background: #fff;
+  color: #1f628d;
+  border: solid #1f628d 2px;
+  text-decoration: none;
+}
 

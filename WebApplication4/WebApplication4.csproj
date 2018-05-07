@@ -169,6 +169,8 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Chicago.jpg" />
+    <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -178,6 +180,21 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="fonts\Montserrat-Black.ttf" />
+    <Content Include="fonts\Montserrat-BlackItalic.ttf" />
+    <Content Include="fonts\Montserrat-Bold.ttf" />
+    <Content Include="fonts\Montserrat-BoldItalic.ttf" />
+    <Content Include="fonts\Montserrat-ExtraBold.ttf" />
+    <Content Include="fonts\Montserrat-ExtraBoldItalic.ttf" />
+    <Content Include="fonts\Montserrat-ExtraLight.ttf" />
+    <Content Include="fonts\Montserrat-ExtraLightItalic.ttf" />
+    <Content Include="fonts\Montserrat-Italic.ttf" />
+    <Content Include="fonts\Montserrat-Light.ttf" />
+    <Content Include="fonts\Montserrat-LightItalic.ttf" />
+    <Content Include="fonts\Montserrat-Medium.ttf" />
+    <Content Include="fonts\Montserrat-MediumItalic.ttf" />
+    <Content Include="fonts\Montserrat-Regular.ttf" />
+    <Content Include="fonts\Montserrat-SemiBold.ttf" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
