@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "AddItem";
+}
+
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="auctionsite.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <title>3 Auctioneers</title>
+</head>
+<body>
+    
+    <div class="row">
+        <div class="col-md-10">
+            <form method=get>
+                Item Name:<br />
+                <input type="text" name="item" required /><br />
+                Starting Bid:<br />
+                <input type="number" name="price" pattern='[0-9]{9999}' /><br />
+                <div class="col-md-6">
+                    Description:
+                    <textarea rows="7" cols="80" name="description"> </textarea>
+                </div>
+                <div class="col-md-10">
+                    Upload Picture:
+                    <!-- We need to decide on to how the thing will do the image upload beacuse we dunno and google says php so thats a thing and we should
+                        porobably fix it at some poiint coz u know images are inmportant I mean who ever buys things off gumtree
+                        withoiut an image so ya thats very impoortant but we must decide and do the thing ober here so yes.-->
+                </div>
+            </form>
+        </div>
+        <div class="col-md-2">
+            <form method=get>
+                Auction it Off!<br />
+                <input type="submit" name="sub"><br /><br />
+            </form>
+        </div>
+    </div>
+</body>
+<footer><hr></hr></footer>
+<br />
+<div class="fcontainer">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Contact us</h2>
+        </div>
+        <div class="col-md-4">
+            <h3>Navigate</h3>
+        </div>
+        <div class="col-md-4">
+            <h3>Afiliation</h3>
+        </div>
+    </div>
+</div>
+   </footer>
+</html>
+
+

@@ -26,5 +26,12 @@ namespace WebApplication4.Controllers
 
             return View();
         }
+
+
+        public ActionResult AddItem()
+        {
+            return View();
+        }
+
     }
 }
