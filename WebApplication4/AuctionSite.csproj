@@ -170,6 +170,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Chicago.jpg" />
+    <Content Include="Content\slick-theme.css" />
+    <Content Include="Content\slick.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -195,6 +197,10 @@
     <Content Include="fonts\Montserrat-MediumItalic.ttf" />
     <Content Include="fonts\Montserrat-Regular.ttf" />
     <Content Include="fonts\Montserrat-SemiBold.ttf" />
+    <Content Include="Content\slick-theme.less" />
+    <Content Include="Content\slick-theme.scss" />
+    <Content Include="Content\slick.less" />
+    <Content Include="Content\slick.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -222,6 +228,7 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Auction.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
