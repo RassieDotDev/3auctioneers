@@ -10,6 +10,8 @@
 <html>
 <head>
     <title>3 Auctioneers</title>
+    <link href="~/Content/jquery.nice-number.css" rel="stylesheet" />
+
 </head>
 <body>
     <script>
@@ -43,8 +45,8 @@
             }
         }, 1000);
     </script>
-    <div class="row">
-        <div class="col-md-10">
+    <div class="row" id="add-item-row">
+        <div class="col-md-9">
 
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
@@ -56,36 +58,94 @@
 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
-                   <!--This is the current Item being auctioned off.-->
+                    <!--This is the current Item being auctioned off.-->
                     <div class="item active">
-                        <div class="col-md-6">
-                            <img src="~/Images/la.jpg" alt="Los Angeles" width="300" height="300">
+                        <div class="box box-danger">
+                            <div class="box-header with-border">
+                                <div class="avatar-row">
+                                    <!--Cover Image background, ineditable-->
+                                    <h3 style="color:#ffffff;text-align:center !important;">Item Name</h3>
+                                </div>
+
+                            </div>
                         </div>
                         <div class="col-md-6">
-                            <p id="demo"></p>
-                            <p> This is the Description of the current Item!<br/>
-                                Loren Imsupn gors gonsdf<br/><br />
-                                Starting Bid: R90000<br />
-                                Current Bid:  R90001
-                                </p>
+                            <img src="http://via.placeholder.com/350x350" />
+
+                        </div>
+                        <div class="col-md-6 pull-right" id="add-item-form">
+
+
+                            <h3 id="prod-name">Fleshlight</h3>
+                            <label>Description:</label>
+                            <span id="prod-desc">
+                                We need to decide on to how the thing will do the image upload beacuse we dunno and google says php so thats a thing and we should
+                                porobably fix it at some poiint coz u know images are inmportant I mean who ever buys things off gumtree
+                                withoiut an image so ya thats very impoortant but we must decide and do the thing ober here so yes.
+                            </span>
+
+
+
                         </div>
                     </div>
 
                     <div class="item">
-                        <div class="col-md-6">
-                            <img src="~/Images/chicago.jpg" alt="Chicago" width="300" height="300">
+                        <div class="box box-danger">
+                            <div class="box-header with-border">
+                                <div class="avatar-row">
+                                    <!--Cover Image background, ineditable-->
+                                    <h3 style="color:#ffffff;text-align:center !important;">Item Name</h3>
+                                </div>
+
+                            </div>
                         </div>
                         <div class="col-md-6">
-                            <p>This is where the next cool things will be</p>
+                            <img src="http://via.placeholder.com/350x350" />
+
+                        </div>
+                        <div class="col-md-6 pull-right" id="add-item-form">
+
+
+                            <h3 id="prod-name">Fleshlight</h3>
+                            <label>Description:</label>
+                            <span id="prod-desc">
+                                We need to decide on to how the thing will do the image upload beacuse we dunno and google says php so thats a thing and we should
+                                porobably fix it at some poiint coz u know images are inmportant I mean who ever buys things off gumtree
+                                withoiut an image so ya thats very impoortant but we must decide and do the thing ober here so yes.
+                            </span>
+
+
+
                         </div>
                     </div>
 
                     <div class="item">
-                        <div class="col-md-6">
-                            <img src="~/Images/ny.jpg" alt="New York" width="300" height="300">
+                        <div class="box box-danger">
+                            <div class="box-header with-border">
+                                <div class="avatar-row">
+                                    <!--Cover Image background, ineditable-->
+                                    <h3 style="color:#ffffff;text-align:center !important;">Item Name</h3>
+                                </div>
+
+                            </div>
                         </div>
                         <div class="col-md-6">
-                            <p>This is whewre the previous cool things will be</p>
+                            <img src="http://via.placeholder.com/350x350" />
+
+                        </div>
+                        <div class="col-md-6 pull-right" id="add-item-form">
+
+
+                            <h3 id="prod-name">Fleshlight</h3>
+                            <label>Description:</label>
+                            <span id="prod-desc">
+                                We need to decide on to how the thing will do the image upload beacuse we dunno and google says php so thats a thing and we should
+                                porobably fix it at some poiint coz u know images are inmportant I mean who ever buys things off gumtree
+                                withoiut an image so ya thats very impoortant but we must decide and do the thing ober here so yes.
+                            </span>
+
+
+
                         </div>
                     </div>
                 </div>
@@ -101,13 +161,33 @@
                 </a>
             </div>
         </div>
-        <div class="col-md-2">
-            <form method="get">
-                BID <br />
-                <input type="number" name="bidAmount" pattern="[0-9]{9999}" required><br />
-                <input type="submit" name="sub"><br /><br />
-            </form>
+        <!--BID BUTTON-->
+        <div class="col-md-3">
+            <div class="nice-number" tyle="display: block;">
+            <span>Live Bid Price:</span>
+            <span>R5000</span>
+            </div>
+                <div class="nice-number" tyle="display: block;">
+
+                    <input type="number" value="0" s />
+
+                    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+                    <script src="~/Scripts/jquery.nice-number.js"></script>
+
+                    <script>
+                        $('input[type="number"]').niceNumber();
+                    </script>
+
+
+                </div>
+                <div class="nice-number" id="bid-section">
+                    <button class="btn btn-primary nice-number" id="bid-btn" value="Bid" type="submit" style="display:block;">BID NOW</button>
+                </div>
+            </div>
+            <!--END BID BUTTON-->
         </div>
-    </div>
+   
 </body>
+
+
 </html>
