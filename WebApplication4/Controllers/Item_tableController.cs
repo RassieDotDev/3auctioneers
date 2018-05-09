@@ -6,9 +6,8 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using WebApplication4.Models;
 
-namespace WebApplication4.Controllers
+namespace WebApplication4.Models
 {
     public class Item_tableController : Controller
     {
