@@ -170,16 +170,11 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Chicago.jpg" />
-    <Content Include="Content\slick-theme.css" />
-    <Content Include="Content\slick.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\chicago.jpg" />
-    <Content Include="Images\la.jpg" />
-    <Content Include="Images\ny.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -200,10 +195,6 @@
     <Content Include="fonts\Montserrat-MediumItalic.ttf" />
     <Content Include="fonts\Montserrat-Regular.ttf" />
     <Content Include="fonts\Montserrat-SemiBold.ttf" />
-    <Content Include="Content\slick-theme.less" />
-    <Content Include="Content\slick-theme.scss" />
-    <Content Include="Content\slick.less" />
-    <Content Include="Content\slick.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -217,8 +208,6 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Content\auctionsite.css" />
     <Content Include="Content\gavel.jpg" />
-    <Content Include="Scripts\slick.js" />
-    <Content Include="Scripts\slick.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -233,9 +222,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\AddItem.cshtml" />
     <Content Include="Views\Home\Auction.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Images\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

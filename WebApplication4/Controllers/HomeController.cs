@@ -27,11 +27,11 @@ namespace WebApplication4.Controllers
             return View();
         }
 
-        public ActionResult Auction()
-        {
-            ViewBag.Message = "Your contact page.";
 
+        public ActionResult AddItem()
+        {
             return View();
         }
+
     }
 }
