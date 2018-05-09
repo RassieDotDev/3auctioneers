@@ -26,7 +26,6 @@ namespace WebApplication4.Models
         }
     
         public virtual DbSet<Item_table> Item_table { get; set; }
-
-        public System.Data.Entity.DbSet<WebApplication4.Models.User> Users { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }
