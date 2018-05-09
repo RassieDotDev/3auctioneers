@@ -1,0 +1,74 @@
+﻿
+@{
+    ViewBag.Title = "AddItem";
+}
+
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="auctionsite.css">
+    <title>3 Auctioneers</title>
+</head>
+<body>
+    
+    <div class="row" id="add-item-row">
+        <div class="col-md-9" id="add-item-left">
+            <div class="box box-danger">
+                <div class="box-header with-border">
+                    <div class="avatar-row">
+                        <!--Cover Image background, ineditable-->
+                        <h3 style="color:#ffffff;text-align:center !important;">Add Item</h3>
+                    </div>
+
+                </div></div>
+                <div class="col-md-6">
+                    <form method=get id="add-item-form" class="form-group">
+                        <label> Name:</label>
+                        <input type="text" name="item" required />
+                        <label>Starting Bid:</label>
+                        <input type="number" name="price" pattern='[0-9]{9999}' />
+                        <label>Description:</label>
+                        <textarea rows="7" cols="80" name="description"> </textarea>
+                    </form>
+                </div>
+                <div class="col-md-6 pull-right" id="add-item-form">
+                    <label>Upload Picture:</label>
+                    <img src="http://via.placeholder.com/250x250"
+                    <!-- We need to decide on to how the thing will do the image upload beacuse we dunno and google says php so thats a thing and we should
+    porobably fix it at some poiint coz u know images are inmportant I mean who ever buys things off gumtree
+    withoiut an image so ya thats very impoortant but we must decide and do the thing ober here so yes.-->
+                    <input class="btn" id="addImage" type="submit" name="sub" value="Upload"/>
+                </div>
+                <input class="btn" id="submit-item" type="submit" name="sub" value="Submit"/>
+            </div>
+            <div class="col-md-3">
+                
+            </div>
+        </div>
+</body>
+<footer><hr></hr></footer>
+<br />
+<div class="fcontainer">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Contact us</h2>
+        </div>
+        <div class="col-md-4">
+            <h3>Navigate</h3>
+        </div>
+        <div class="col-md-4">
+            <h3>Afiliation</h3>
+        </div>
+    </div>
+</div>
+   </footer>
+</html>
+
+

@@ -197,6 +197,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Chicago.jpg" />
+    <Content Include="Content\jquery.nice-number.css" />
+    <Content Include="Content\jquery.nice-number.min.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -243,6 +245,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.nice-number.js" />
+    <Content Include="Scripts\jquery.nice-number.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -266,11 +270,16 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+
     <Content Include="Views\Item_table\Create.cshtml" />
     <Content Include="Views\Item_table\Delete.cshtml" />
     <Content Include="Views\Item_table\Details.cshtml" />
     <Content Include="Views\Item_table\Edit.cshtml" />
     <Content Include="Views\Item_table\Index.cshtml" />
+
+    <Content Include="Views\Home\AddItem.cshtml" />
+    <Content Include="Views\Home\Auction.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />

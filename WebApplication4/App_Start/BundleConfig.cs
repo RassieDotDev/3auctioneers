@@ -24,7 +24,9 @@ namespace WebApplication4
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrap.css", 
+                      "~/Content/slick.css",
+                      "~/Content/slick-theme.css", 
                       "~/Content/Site.css"));
         }
     }
