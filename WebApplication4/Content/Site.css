@@ -55,6 +55,15 @@ h1 {
     width:100%;
 }
 
+ #addImage {
+    width: 50% !important;
+    margin-left: 6%;
+    margin-top: 6%;
+ }
+
+ #submit-item{
+     margin-left: 1.5%;
+ }
 #add-item-form input, textarea {
     box-shadow: 0px 0px 0px #fff;
     border: solid 1px #ddd;
@@ -71,6 +80,7 @@ h1 {
 #add-item-left{
     padding :0px 0px 50px 0px;
     box-shadow: 3px 3px 10px #ddd;
+    left: 10%;
 }
 
 .avatar-row {
