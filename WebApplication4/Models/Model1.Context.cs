@@ -13,10 +13,10 @@ namespace WebApplication4.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class AuctionDBEntities : DbContext
+    public partial class AuctionDBEntities2 : DbContext
     {
-        public AuctionDBEntities()
-            : base("name=AuctionDBEntities")
+        public AuctionDBEntities2()
+            : base("name=AuctionDBEntities2")
         {
         }
     
@@ -25,8 +25,6 @@ namespace WebApplication4.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Item_table> Item_table { get; set; }
-
-        public System.Data.Entity.DbSet<WebApplication4.Models.User> Users { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }
