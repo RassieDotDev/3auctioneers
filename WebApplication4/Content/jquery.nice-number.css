@@ -1,0 +1,65 @@
+.nice-number {
+    display: inline-flex;
+    justify-content: stretch;
+    font-size: 20px;
+}
+
+    .nice-number input {
+        vertical-align: middle;
+        -moz-appearance: textfield;
+        box-sizing: content-box;
+        margin: 0;
+        text-align: center;
+        padding-left: 20px;
+        padding-right: 20px;
+        border: none;
+    }
+
+    .nice-number button {
+        box-shadow: none;
+        border: solid 2px #1abc9c;
+        color: #1abc9c;
+        font-family: Montserrat;
+        background-color: white;
+        font-size: 40px;
+        padding-left: 20px;
+        padding-right: 20px;
+        -o-transition: .5s;
+        -moz-transition: .5s;
+        -webkit-transition: .5s;
+        /* ...and now for the proper property */
+        transition: .5s;
+    }
+        .nice-number button:hover {
+            color: white;
+            background-color: #1abc9c;
+        }
+
+.nice-number input::-webkit-inner-spin-button,
+.nice-number input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#bid-section{
+    
+    margin-top: 15%;
+}
+
+#bid-btn {
+    border-radius: 0;
+    border: solid 2px #1abc9c;
+    font-size: 20px;
+    padding: 10px 45% 10px 45%;
+    background: none;
+    color: #1abc9c;
+    -o-transition: .5s;
+    -moz-transition: .5s;
+    -webkit-transition: .5s;
+    /* ...and now for the proper property */
+    transition: .5s;
+}
+
+#bid-btn:hover {
+    color: white;
+    background-color: #1abc9c;
+}

@@ -94,3 +94,40 @@ h1 {
 .avatar-row h3{
     padding: 5px;
 }
+
+  
+
+#prod-name, #prod-desc{
+    font-family: 'Open Sans';
+    font-size: 16px;
+    text-wrap: normal;
+}
+
+#prod-name{
+    font-family: Montserrat;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #aaa;
+}
+
+
+/*NICE NUMBER CSS*/
+.nice-number {
+    display: inline-flex;
+    justify-content: center;
+
+}
+
+    .nice-number input {
+        vertical-align: middle;
+        -moz-appearance: textfield;
+        box-sizing: content-box;
+        margin: 0;
+        text-align: center;
+    }
+
+        .nice-number input::-webkit-inner-spin-button,
+        .nice-number input::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
