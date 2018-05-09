@@ -46,3 +46,41 @@ h1 {
     transform: translate(-50%, -50%);
     color: black;
 }
+
+#add-item-form input, textarea {
+    display: block !important;
+}
+
+#add-item-form input, textarea {
+    width:100%;
+}
+
+#add-item-form input, textarea {
+    box-shadow: 0px 0px 0px #fff;
+    border: solid 1px #ddd;
+}
+
+#add-item-form label{
+    display: block;
+}
+
+#add-item-row{
+    padding-top:50px;
+}
+
+#add-item-left{
+    padding :0px 0px 50px 0px;
+    box-shadow: 3px 3px 10px #ddd;
+}
+
+.avatar-row {
+    margin-top: -3%;
+    background-color: #333b3e;
+    z-index: 0;
+    position: relative;
+    
+    }
+
+.avatar-row h3{
+    padding: 5px;
+}
