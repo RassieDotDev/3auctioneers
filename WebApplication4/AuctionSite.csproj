@@ -161,6 +161,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\User_tableController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -183,6 +184,9 @@
       <DependentUpon>AuctionDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Item_tableController.cs" />
+    <Compile Include="Models\User_table.cs">
+      <DependentUpon>AuctionDBModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -270,16 +274,18 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-
     <Content Include="Views\Item_table\Create.cshtml" />
     <Content Include="Views\Item_table\Delete.cshtml" />
     <Content Include="Views\Item_table\Details.cshtml" />
     <Content Include="Views\Item_table\Edit.cshtml" />
     <Content Include="Views\Item_table\Index.cshtml" />
-
     <Content Include="Views\Home\AddItem.cshtml" />
     <Content Include="Views\Home\Auction.cshtml" />
-
+    <Content Include="Views\User_table\Create.cshtml" />
+    <Content Include="Views\User_table\Delete.cshtml" />
+    <Content Include="Views\User_table\Details.cshtml" />
+    <Content Include="Views\User_table\Edit.cshtml" />
+    <Content Include="Views\User_table\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
