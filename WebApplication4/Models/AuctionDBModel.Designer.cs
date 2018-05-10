@@ -1,4 +1,5 @@
 
+
 ﻿// T4 code generation is enabled for model 'C:\Users\Alexg_000\Documents\GitHub\3auctioneers\WebApplication4\Models\AuctionDBModel.edmx'. 
 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
