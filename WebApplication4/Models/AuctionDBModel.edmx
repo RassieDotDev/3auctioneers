@@ -17,6 +17,7 @@
           <Property Name="prod_pic" Type="text" />
           <Property Name="prod_time" Type="time" Precision="7" />
         </EntityType>
+
         <EntityType Name="User_table">
           <Key>
             <PropertyRef Name="Id" />
@@ -29,6 +30,7 @@
         <EntityContainer Name="AuctionDBModelStoreContainer">
           <EntitySet Name="Item_table" EntityType="Self.Item_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_table" EntityType="Self.User_table" Schema="dbo" store:Type="Tables" />
+
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -48,6 +50,7 @@
         </EntityType>
         <EntityContainer Name="AuctionDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Item_table" EntityType="Self.Item_table" />
+
           <EntitySet Name="User_table" EntityType="AuctionDBModel.User_table" />
         </EntityContainer>
         <EntityType Name="User_table">
@@ -58,6 +61,7 @@
           <Property Name="user_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="user_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="user_password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -78,12 +82,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+
           <EntitySetMapping Name="User_table">
             <EntityTypeMapping TypeName="AuctionDBModel.User_table">
               <MappingFragment StoreEntitySet="User_table">
                 <ScalarProperty Name="user_password" ColumnName="user_password" />
                 <ScalarProperty Name="user_email" ColumnName="user_email" />
                 <ScalarProperty Name="user_name" ColumnName="user_name" />
+
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

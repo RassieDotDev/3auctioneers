@@ -15,6 +15,7 @@ namespace WebApplication4.Models
     
     public partial class AuctionDBEntities : DbContext
     {
+
         public AuctionDBEntities()
             : base("name=AuctionDBEntities")
         {
@@ -27,5 +28,9 @@ namespace WebApplication4.Models
     
         public virtual DbSet<Item_table> Item_table { get; set; }
         public virtual DbSet<User_table> User_table { get; set; }
+
+
+        throw new UnintentionalCodeFirstException();
+
     }
 }
