@@ -15,18 +15,16 @@ namespace WebApplication4.Models
 using System;
     using System.Collections.Generic;
     
-public partial class Item_table
+public partial class User_table
 {
 
     public int Id { get; set; }
 
-    public string prod_name { get; set; }
+    public string user_name { get; set; }
 
-    public string prod_des { get; set; }
+    public string user_email { get; set; }
 
-    public double prod_sbid { get; set; }
-
-    public double prod_cbid { get; set; }
+    public string user_password { get; set; }
 
 }
 

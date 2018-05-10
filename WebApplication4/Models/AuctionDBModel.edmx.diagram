@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="91c97dd2b1674ba49cbfebc35787eef0" Name="Diagram1">
         <EntityTypeShape EntityType="AuctionDBModel.Item_table" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AuctionDBModel.User_table" Width="1.5" PointX="2.875" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
