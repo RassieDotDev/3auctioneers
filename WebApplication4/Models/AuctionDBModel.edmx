@@ -14,6 +14,8 @@
           <Property Name="prod_des" Type="text" />
           <Property Name="prod_sbid" Type="float" Nullable="false" />
           <Property Name="prod_cbid" Type="float" Nullable="false" />
+          <Property Name="prod_pic" Type="text" />
+          <Property Name="prod_time" Type="time" Precision="7" />
         </EntityType>
         <EntityType Name="User_table">
           <Key>
@@ -41,6 +43,8 @@
           <Property Name="prod_des" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="prod_sbid" Type="Double" Nullable="false" />
           <Property Name="prod_cbid" Type="Double" Nullable="false" />
+          <Property Name="prod_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="prod_time" Type="Time" Precision="7" />
         </EntityType>
         <EntityContainer Name="AuctionDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Item_table" EntityType="Self.Item_table" />
@@ -64,6 +68,8 @@
           <EntitySetMapping Name="Item_table">
             <EntityTypeMapping TypeName="AuctionDBModel.Item_table">
               <MappingFragment StoreEntitySet="Item_table">
+                <ScalarProperty Name="prod_time" ColumnName="prod_time" />
+                <ScalarProperty Name="prod_pic" ColumnName="prod_pic" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="prod_name" ColumnName="prod_name" />
                 <ScalarProperty Name="prod_des" ColumnName="prod_des" />
