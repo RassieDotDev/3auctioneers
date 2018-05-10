@@ -30,7 +30,5 @@ namespace WebApplication4.Models
         public virtual DbSet<User_table> User_table { get; set; }
 
 
-        throw new UnintentionalCodeFirstException();
-
     }
 }
