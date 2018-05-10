@@ -44,16 +44,6 @@
             </div>
             <div class="col-md-6 pull-right" id="add-item-form">
                 <label>Upload Picture:</label>
-                @using (Html.BeginForm("Index",
-                                       "Home",
-                                       FormMethod.Post,
-                  new { enctype = "multipart/form-data" }))
-                {
-                    <label for="file">Upload Image:</label>
-                    <input type="file" name="file" id="file" /><br><br>
-                    <input type="submit" value="Upload Image" />
-                    <br><br>
-                }
                 <img src="http://via.placeholder.com/250x250" />
                 <!-- We need to decide on to how the thing will do the image upload beacuse we dunno and google says php so thats a thing and we should
     porobably fix it at some poiint coz u know images are inmportant I mean who ever buys things off gumtree

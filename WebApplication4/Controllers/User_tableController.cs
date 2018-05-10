@@ -18,7 +18,7 @@ namespace WebApplication4.Controllers
         // GET: User_table
         public ActionResult Index()
         {
-            return View(db.User_table.ToList());
+            return View();//(db.User_table.ToList());
         }
 
         // GET: User_table/Details/5
@@ -123,28 +123,6 @@ namespace WebApplication4.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
-
-        [HttpPost]
-        public ActionResult Index(HttpPostedFileBase file)
-        {
-            if (file != null && file.ContentLength > 0)
-                try
-                {
-                    string path = Path.Combine(Server.MapPath("~/Images"),
-                                               Path.GetFileName(file.FileName));
-                    file.SaveAs(path);
-                    ViewBag.Message = "File uploaded successfully";
-                }
-                catch (Exception ex)
-                {
-                    ViewBag.Message = "ERROR:" + ex.Message.ToString();
-                }
-            else
-            {
-                ViewBag.Message = "You have not specified a file.";
-            }
-            return View();
         }
     }
 }
