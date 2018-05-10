@@ -280,11 +280,11 @@
     <Content Include="Views\Item_table\Index.cshtml" />
     <Content Include="Views\Item_table\Create.cshtml" />
     <Content Include="Views\Home\Auction.cshtml" />
-    <Content Include="Views\User_table\Create.cshtml" />
+    <Content Include="Views\User_table\Create_bak.cshtml" />
     <Content Include="Views\User_table\Delete.cshtml" />
     <Content Include="Views\User_table\Details.cshtml" />
     <Content Include="Views\User_table\Edit.cshtml" />
-    <Content Include="Views\User_table\Index_bak.cshtml" />
+    <Content Include="Views\User_table\Index_bak1.cshtml" />
     <Content Include="Views\User_table\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

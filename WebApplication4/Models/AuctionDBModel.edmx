@@ -17,7 +17,6 @@
           <Property Name="prod_pic" Type="text" />
           <Property Name="prod_time" Type="time" Precision="7" />
         </EntityType>
-
         <EntityType Name="User_table">
           <Key>
             <PropertyRef Name="Id" />
@@ -30,7 +29,6 @@
         <EntityContainer Name="AuctionDBModelStoreContainer">
           <EntitySet Name="Item_table" EntityType="Self.Item_table" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User_table" EntityType="Self.User_table" Schema="dbo" store:Type="Tables" />
-
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -67,36 +65,33 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="AuctionDBModelStoreContainer" CdmEntityContainer="AuctionDBEntities">
-          <EntitySetMapping Name="Item_table">
-            <EntityTypeMapping TypeName="AuctionDBModel.Item_table">
-              <MappingFragment StoreEntitySet="Item_table">
-                <ScalarProperty Name="prod_time" ColumnName="prod_time" />
-                <ScalarProperty Name="prod_pic" ColumnName="prod_pic" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="prod_name" ColumnName="prod_name" />
-                <ScalarProperty Name="prod_des" ColumnName="prod_des" />
-                <ScalarProperty Name="prod_sbid" ColumnName="prod_sbid" />
-                <ScalarProperty Name="prod_cbid" ColumnName="prod_cbid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-
-          <EntitySetMapping Name="User_table">
-            <EntityTypeMapping TypeName="AuctionDBModel.User_table">
-              <MappingFragment StoreEntitySet="User_table">
-                <ScalarProperty Name="user_password" ColumnName="user_password" />
-                <ScalarProperty Name="user_email" ColumnName="user_email" />
-                <ScalarProperty Name="user_name" ColumnName="user_name" />
-
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AuctionDBModelStoreContainer" CdmEntityContainer="AuctionDBEntities">
+    <EntitySetMapping Name="Item_table">
+      <EntityTypeMapping TypeName="IsTypeOf(AuctionDBModel.Item_table)">
+        <MappingFragment StoreEntitySet="Item_table">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="prod_name" ColumnName="prod_name" />
+          <ScalarProperty Name="prod_des" ColumnName="prod_des" />
+          <ScalarProperty Name="prod_sbid" ColumnName="prod_sbid" />
+          <ScalarProperty Name="prod_cbid" ColumnName="prod_cbid" />
+          <ScalarProperty Name="prod_pic" ColumnName="prod_pic" />
+          <ScalarProperty Name="prod_time" ColumnName="prod_time" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User_table">
+      <EntityTypeMapping TypeName="IsTypeOf(AuctionDBModel.User_table)">
+        <MappingFragment StoreEntitySet="User_table">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="user_email" ColumnName="user_email" />
+          <ScalarProperty Name="user_password" ColumnName="user_password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -110,7 +105,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
