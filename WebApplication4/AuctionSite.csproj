@@ -46,6 +46,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
@@ -56,6 +62,8 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -153,9 +161,34 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\User_tableController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AuctionDBModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuctionDBModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AuctionDBModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuctionDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AuctionDBModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AuctionDBModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Item_table.cs">
+      <DependentUpon>AuctionDBModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\Item_tableController.cs" />
+
+    <Compile Include="Models\User_table.cs">
+      <DependentUpon>AuctionDBModel.tt</DependentUpon>
+    </Compile>
+
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -170,16 +203,23 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Chicago.jpg" />
-    <Content Include="Content\slick-theme.css" />
-    <Content Include="Content\slick.css" />
+    <Content Include="Content\jquery.nice-number.css" />
+    <Content Include="Content\jquery.nice-number.min.css" />
     <Content Include="Content\style.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Images\chicago.jpg" />
-    <Content Include="Images\la.jpg" />
-    <Content Include="Images\ny.jpg" />
+    <Content Include="Models\AuctionDBModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AuctionDBModel.Context.cs</LastGenOutput>
+      <DependentUpon>AuctionDBModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\AuctionDBModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AuctionDBModel.edmx</DependentUpon>
+      <LastGenOutput>AuctionDBModel.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -200,14 +240,19 @@
     <Content Include="fonts\Montserrat-MediumItalic.ttf" />
     <Content Include="fonts\Montserrat-Regular.ttf" />
     <Content Include="fonts\Montserrat-SemiBold.ttf" />
-    <Content Include="Content\slick-theme.less" />
-    <Content Include="Content\slick-theme.scss" />
-    <Content Include="Content\slick.less" />
-    <Content Include="Content\slick.scss" />
+    <EntityDeploy Include="Models\AuctionDBModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AuctionDBModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\AuctionDBModel.edmx.diagram">
+      <DependentUpon>AuctionDBModel.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.nice-number.js" />
+    <Content Include="Scripts\jquery.nice-number.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -217,8 +262,6 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Content\auctionsite.css" />
     <Content Include="Content\gavel.jpg" />
-    <Content Include="Scripts\slick.js" />
-    <Content Include="Scripts\slick.min.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -233,10 +276,23 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Item_table\Create.cshtml" />
+    <Content Include="Views\Item_table\Delete.cshtml" />
+    <Content Include="Views\Item_table\Details.cshtml" />
+    <Content Include="Views\Item_table\Edit.cshtml" />
+    <Content Include="Views\Item_table\Index.cshtml" />
+    <Content Include="Views\Home\AddItem.cshtml" />
     <Content Include="Views\Home\Auction.cshtml" />
+
+    <Content Include="Views\User_table\Create.cshtml" />
+    <Content Include="Views\User_table\Delete.cshtml" />
+    <Content Include="Views\User_table\Details.cshtml" />
+    <Content Include="Views\User_table\Edit.cshtml" />
+    <Content Include="Views\User_table\Index.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Folder Include="Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -250,6 +306,9 @@
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

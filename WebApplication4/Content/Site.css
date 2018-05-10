@@ -46,3 +46,88 @@ h1 {
     transform: translate(-50%, -50%);
     color: black;
 }
+
+#add-item-form input, textarea {
+    display: block !important;
+}
+
+#add-item-form input, textarea {
+    width:100%;
+}
+
+ #addImage {
+    width: 50% !important;
+    margin-left: 6%;
+    margin-top: 6%;
+ }
+
+ #submit-item{
+     margin-left: 1.5%;
+ }
+#add-item-form input, textarea {
+    box-shadow: 0px 0px 0px #fff;
+    border: solid 1px #ddd;
+}
+
+#add-item-form label{
+    display: block;
+}
+
+#add-item-row{
+    padding-top:50px;
+}
+
+#add-item-left{
+    padding :0px 0px 50px 0px;
+    box-shadow: 3px 3px 10px #ddd;
+    left: 10%;
+}
+
+.avatar-row {
+    margin-top: -3%;
+    background-color: #333b3e;
+    z-index: 0;
+    position: relative;
+    
+    }
+
+.avatar-row h3{
+    padding: 5px;
+}
+
+  
+
+#prod-name, #prod-desc{
+    font-family: 'Open Sans';
+    font-size: 16px;
+    text-wrap: normal;
+}
+
+#prod-name{
+    font-family: Montserrat;
+    font-weight: 400;
+    text-transform: uppercase;
+    color: #aaa;
+}
+
+
+/*NICE NUMBER CSS*/
+.nice-number {
+    display: inline-flex;
+    justify-content: center;
+
+}
+
+    .nice-number input {
+        vertical-align: middle;
+        -moz-appearance: textfield;
+        box-sizing: content-box;
+        margin: 0;
+        text-align: center;
+    }
+
+        .nice-number input::-webkit-inner-spin-button,
+        .nice-number input::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }

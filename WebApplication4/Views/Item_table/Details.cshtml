@@ -1,0 +1,50 @@
+﻿@model WebApplication4.Models.Item_table
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Item_table</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.prod_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prod_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prod_des)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prod_des)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prod_sbid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prod_sbid)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.prod_cbid)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.prod_cbid)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
