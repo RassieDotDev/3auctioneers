@@ -184,9 +184,11 @@
       <DependentUpon>AuctionDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\Item_tableController.cs" />
+
     <Compile Include="Models\User_table.cs">
       <DependentUpon>AuctionDBModel.tt</DependentUpon>
     </Compile>
+
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -281,11 +283,13 @@
     <Content Include="Views\Item_table\Index.cshtml" />
     <Content Include="Views\Home\AddItem.cshtml" />
     <Content Include="Views\Home\Auction.cshtml" />
+
     <Content Include="Views\User_table\Create.cshtml" />
     <Content Include="Views\User_table\Delete.cshtml" />
     <Content Include="Views\User_table\Details.cshtml" />
     <Content Include="Views\User_table\Edit.cshtml" />
     <Content Include="Views\User_table\Index.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
