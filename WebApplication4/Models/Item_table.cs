@@ -11,6 +11,7 @@ namespace WebApplication4.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.Web;
     
     public partial class Item_table
     {
@@ -21,5 +22,7 @@ namespace WebApplication4.Models
         public double prod_cbid { get; set; }
         public string prod_pic { get; set; }
         public Nullable<System.TimeSpan> prod_time { get; set; }
+
+        public HttpPostedFileBase ImageFile { get; set; }
     }
 }
