@@ -1,4 +1,4 @@
-﻿@model WebApplication4.Models.User_table
+﻿@model IEnumerable<WebApplication4.Models.Item_table>
 @{
     ViewBag.Title = "Auction";
 }
@@ -52,8 +52,8 @@
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
                     <li data-target="#myCarousel" data-slide-to="0" class="disabled"></li>
-                    <li data-target="#myCarousel" data-slide-to="1"></li>
-                    <li data-target="#myCarousel" data-slide-to="2"></li>
+                    <li data-target="#myCarousel" data-slide-to="1" class="disabled"></li>
+                    <li data-target="#myCarousel" data-slide-to="2" class="disabled"></li>
                 </ol>
 
                 <!-- Wrapper for slides -->
@@ -70,18 +70,43 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <img src="http://via.placeholder.com/350x350" />
+                            @foreach (var item in Model)
+                            {
+                                if (item.Id == 3)
+                                {
+                                        <img src="@(item.prod_pic)" width="350" height="350"/>
+                                }
+                            }
 
                         </div>
                         <div class="col-md-6 pull-right" id="add-item-form">
 
 
-                            <h3 id="prod-name">Fleshlight</h3>
-                            <label>Description:</label>
+                            <h3 id="prod-name"></h3>
+                            @foreach (var item in Model)
+                                    {
+                                        if (item.Id == 3)
+                                        {
+                                            <h3 id="prod-name">@item.prod_name</h3>
+                                             <label>Description:</label>
+                                            @item.prod_des
+                                        }
+                                    }
                             <span id="prod-desc">
-                                We need to decide on to how the thing will do the image upload beacuse we dunno and google says php so thats a thing and we should
-                                porobably fix it at some poiint coz u know images are inmportant I mean who ever buys things off gumtree
-                                withoiut an image so ya thats very impoortant but we must decide and do the thing ober here so yes.
+                                <table>
+                                    <tr>
+                                        <th>Current Bid</th>
+                                    </tr>
+                                    @foreach (var item in Model)
+                                    {
+                                        if (item.Id == 3)
+                                        {
+                                        <tr>
+                                            <td>@item.prod_cbid</td>
+                                        </tr>
+                                        }
+                                    }
+                                </table>
                             </span>
 
 
@@ -139,9 +164,7 @@
                             <h3 id="prod-name">Fleshlight</h3>
                             <label>Description:</label>
                             <span id="prod-desc">
-                                We need to decide on to how the thing will do the image upload beacuse we dunno and google says php so thats a thing and we should
-                                porobably fix it at some poiint coz u know images are inmportant I mean who ever buys things off gumtree
-                                withoiut an image so ya thats very impoortant but we must decide and do the thing ober here so yes.
+                               
                             </span>
 
 
@@ -164,17 +187,12 @@
         <!--BID BUTTON-->
         <div class="col-md-3">
             <div class="nice-number" tyle="display: block;">
-            <span>Live Bid Price:</span>
-        
-                @Html.TextBox("Auction",Auction(1))
+                <span>Live Bid Price:</span>
 
-                <div class="nice-number" id="bid-section">
-                    <button class="btn btn-primary nice-number" id="bid-btn" value="Bid" type="submit" style="display:block;">BID NOW</button>
-                </div>
             </div>
             <!--END BID BUTTON-->
         </div>
-        
+
 </body>
 
 

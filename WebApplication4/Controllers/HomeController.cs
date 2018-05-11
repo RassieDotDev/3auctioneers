@@ -35,22 +35,13 @@ namespace WebApplication4.Controllers
             return View();
         }
 
-        public ActionResult Auction(int? id) {
+        public ActionResult Auction(int? id)
+        {
+            var price = from m in db.Item_table
+                         select m;
 
-            if (id == null)
-            {
-                return View();
-            }
-            else
-            {
-                Item_table item_table = db.Item_table.Find(id);
-                if (item_table == null)
-                {
-                    return HttpNotFound();
-                }
-                return View(item_table);
-            }
+            return View(price.ToList());
+
         }
-
     }
 }
