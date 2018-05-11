@@ -165,6 +165,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Controllers\Item_tableController.cs" />
     <Compile Include="Models\AuctionDBModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -183,7 +184,6 @@
     <Compile Include="Models\Item_table.cs">
       <DependentUpon>AuctionDBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\Item_tableController.cs" />
     <Compile Include="Models\User_table.cs">
       <DependentUpon>AuctionDBModel.tt</DependentUpon>
     </Compile>
@@ -210,8 +210,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Models\AuctionDBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AuctionDBModel.Context.cs</LastGenOutput>
       <DependentUpon>AuctionDBModel.edmx</DependentUpon>
+      <LastGenOutput>AuctionDBModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Models\AuctionDBModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -280,11 +280,11 @@
     <Content Include="Views\Item_table\Index.cshtml" />
     <Content Include="Views\Item_table\Create.cshtml" />
     <Content Include="Views\Home\Auction.cshtml" />
-    <Content Include="Views\User_table\Create_bak.cshtml" />
+    <Content Include="Views\User_table\Create.cshtml" />
     <Content Include="Views\User_table\Delete.cshtml" />
     <Content Include="Views\User_table\Details.cshtml" />
     <Content Include="Views\User_table\Edit.cshtml" />
-    <Content Include="Views\User_table\Index_bak1.cshtml" />
+    <Content Include="Views\User_table\Index_bak.cshtml" />
     <Content Include="Views\User_table\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
