@@ -28,29 +28,39 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <form method=get id="add-item-form" class="form-group">
-                    <label> Name:</label>
-                    @Html.EditorFor(model => model.prod_name, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.prod_name, "", new { @class = "text-danger" })
-                    <label>Starting Bid:</label>
-                    @Html.EditorFor(model => model.prod_sbid, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.prod_sbid, "", new { @class = "text-danger" })
-                    <label>Description:</label>
-                    @Html.EditorFor(model => model.prod_des, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.prod_des, "", new { @class = "text-danger" })
+                @using (Html.BeginForm("Create",
+                                       "Item_table",
+                                       FormMethod.Post,
+                    new { enctype = "multipart/form-data" }))
+                {
+            <label> Name:</label>
+                @Html.EditorFor(model => model.prod_name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.prod_name, "", new { @class = "text-danger" })
+                <label>Starting Bid:</label>
+                @Html.EditorFor(model => model.prod_sbid, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.prod_sbid, "", new { @class = "text-danger" })
+                <label>Description:</label>
+                @Html.EditorFor(model => model.prod_des, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.prod_des, "", new { @class = "text-danger" })
 
+                
+                @Html.AntiForgeryToken()
+                <label for="file">Upload Image:</label>
+                <input type="file" name="file" id="file" /><br><br>
+                <input class="btn" id="submit-item" type="submit" name="sub" value="Submit" />
+                <br><br>
+                @ViewBag.Message
+                }
 
-                </form>
+   
             </div>
             <div class="col-md-6 pull-right" id="add-item-form">
                 <label>Upload Picture:</label>
                 <img src="http://via.placeholder.com/250x250" />
-                <!-- We need to decide on to how the thing will do the image upload beacuse we dunno and google says php so thats a thing and we should
-    porobably fix it at some poiint coz u know images are inmportant I mean who ever buys things off gumtree
-    withoiut an image so ya thats very impoortant but we must decide and do the thing ober here so yes.-->
+               
                 <input class="btn" id="addImage" type="submit" name="sub" value="Upload" />
             </div>
-            <input class="btn" id="submit-item" type="submit" name="sub" value="Submit" />
+            
         </div>
         <div class="col-md-3">
 

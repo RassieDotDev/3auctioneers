@@ -48,8 +48,34 @@
                     <input type="text" name="usern" required /><br />
                     Password:<br />
                     <input type="password" name="pass" required /><br /><br />
-                    <input type="submit" name="sub" class="btn" value="Login" />
-                    <p style="display: inline;">  or &nbsp; <a href="Create" type="button" class="btn"> Register </a></p>&nbsp; a new account<br /><br />
+                    <input type="submit" name="sub" class="btn" /><p style="display: inline;"> >?or <button type="button" class="btn" value="Register" data-toggle="modal" data-target="#regModal"> Register </button>&nbsp; a new account</p><br /><br />
+                    <div class="modal fade" id="regModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Register new account</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button><br />
+                                </div>
+                                <div class="modal-body">
+                                    <form method="post">
+                                        Username:<br />
+                                        @Html.EditorFor(model => model.user_name, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.user_name, "", new { @class = "text-danger" })
+                                        Password:<br />
+                                        @Html.EditorFor(model => model.user_password, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.user_password, "", new { @class = "text-danger" })
+                                        Email:<br />
+                                        @Html.EditorFor(model => model.user_email, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.user_email, "", new { @class = "text-danger" })
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="#" class="btn">Register</a>
+                                    <a href="#" data-dismiss="modal">Close</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
                 
             </div>

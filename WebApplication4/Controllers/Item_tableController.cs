@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -45,15 +47,34 @@ namespace WebApplication4.Models
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,prod_name,prod_des,prod_sbid,prod_cbid")] Item_table item_table)
+        public ActionResult Create([Bind(Include = "Id,prod_name,prod_des,prod_sbid,prod_cbid,prod_pic")] Item_table item_table, HttpPostedFileBase file)
         {
+            
             if (ModelState.IsValid)
             {
+                string path = "" ;
+                if (file != null && file.ContentLength > 0)
+                        try
+                        {
+                            path = Path.Combine(Server.MapPath("~/Images"),
+                                                       Path.GetFileName(file.FileName));
+                            file.SaveAs(path);
+                            ViewBag.Message = "File uploaded successfully";
+                        }
+                        catch (Exception ex)
+                        {
+                            ViewBag.Message = "ERROR:" + ex.Message.ToString();
+                        }
+                    else
+                    {
+                        ViewBag.Message = "You have not specified a file.";
+                    }
+                item_table.prod_pic = path;
                 db.Item_table.Add(item_table);
                 db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                return RedirectToAction("Auction","Home");
 
+            }
             return View(item_table);
         }
 
@@ -122,5 +143,7 @@ namespace WebApplication4.Models
             }
             base.Dispose(disposing);
         }
+
+        
     }
 }
