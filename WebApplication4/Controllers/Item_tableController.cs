@@ -56,8 +56,7 @@ namespace WebApplication4.Models
                 if (file != null && file.ContentLength > 0)
                         try
                         {
-                            path = Path.Combine(Server.MapPath("~/Images"),
-                                                       Path.GetFileName(file.FileName));
+                            path = "\\Images\\" + Path.GetFileName(file.FileName);
                             file.SaveAs(path);
                             ViewBag.Message = "File uploaded successfully";
                         }
