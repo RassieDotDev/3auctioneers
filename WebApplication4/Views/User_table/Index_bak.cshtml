@@ -1,0 +1,89 @@
+
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="~/Content/auctionsite.css">
+    <link rel="stylesheet" href="~/Content/bootstrap.css">
+    <link rel="stylesheet" href="~/Content/style.css">
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <title>3 Auctioneers</title>
+</head>
+<body>
+    <div class="row">
+
+
+        <div class="col-md-6 pull-left" style="padding-top: 3%;">
+            <div>
+                <div class="col-sm-8 col-md-9">
+                    <div class="page-title">
+                        <div class="capt">
+                            <h1 class="lead">3 AUCTIONEERS</h1>
+                        </div>
+                        <div class="bg-title"></div>
+                    </div>
+                </div>
+            </div>
+            <div style="top: 25%; left: 25%; padding-left: 30%; padding-right: 30%; ">
+                <p id="site-info">
+                    Welcome to the 3 Auctioneers auctioneering auctionsite.<br />
+                    Here at the 3 Auctioneers we auction off goods! You never would have guessed!<br />
+                    If you have a login, please do so and let the Auction begin! Otherwise please register as a new user.<br />
+                    Should you have any queries or problems, please contact our administrator who works 24/7 365 at <a href="www.google.com">CLICK HERE</a>
+                </p>
+            </div>
+
+
+        </div>
+        <div class="col-md-6 pull-right rightcol" id="rightcol">
+
+            <div class="col-md-12" id="formdiv">
+                <form method=get>
+                    Username:<br />
+                    <input type="text" name="usern" required /><br />
+                    Password:<br />
+                    <input type="password" name="pass" required /><br /><br />
+                    <input type="submit" name="sub" class="btn" /><p style="display: inline;"> >?or <button type="button" class="btn" value="Register" data-toggle="modal" data-target="#regModal"> Register </button>&nbsp; a new account</p><br /><br />
+                    <div class="modal fade" id="regModal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Register new account</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button><br />
+                                </div>
+                                <div class="modal-body">
+                                    <form method="post">
+                                        Username:<br />
+                                        @Html.EditorFor(model => model.user_name, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.user_name, "", new { @class = "text-danger" })
+                                        Password:<br />
+                                        @Html.EditorFor(model => model.user_password, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.user_password, "", new { @class = "text-danger" })
+                                        Email:<br />
+                                        @Html.EditorFor(model => model.user_email, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.user_email, "", new { @class = "text-danger" })
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <a href="#" class="btn">Register</a>
+                                    <a href="#" data-dismiss="modal">Close</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                
+            </div>
+
+        </div>
+
+
+    </div>
+</body>
+</html>
+

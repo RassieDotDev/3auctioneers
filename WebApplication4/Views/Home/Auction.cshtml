@@ -45,153 +45,39 @@
             }
         }, 1000);
     </script>
-    <div class="row" id="add-item-row">
-        <div class="col-md-9">
-
-            <div id="myCarousel" class="carousel slide" data-ride="carousel">
-                <!-- Indicators -->
-                <ol class="carousel-indicators">
-                    <li data-target="#myCarousel" data-slide-to="0" class="disabled"></li>
-                    <li data-target="#myCarousel" data-slide-to="1" class="disabled"></li>
-                    <li data-target="#myCarousel" data-slide-to="2" class="disabled"></li>
-                </ol>
-
-                <!-- Wrapper for slides -->
-                <div class="carousel-inner">
-                    <!--This is the current Item being auctioned off.-->
-                    <div class="item active">
-                        <div class="box box-danger">
-                            <div class="box-header with-border">
-                                <div class="avatar-row">
-                                    <!--Cover Image background, ineditable-->
-                                    <h3 style="color:#ffffff;text-align:center !important;">Item Name</h3>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            @foreach (var item in Model)
-                            {
-                                if (item.Id == 3)
-                                {
-                                        <img src="@(item.prod_pic)" width="350" height="350"/>
-                                }
-                            }
-
-                        </div>
-                        <div class="col-md-6 pull-right" id="add-item-form">
-
-
-                            <h3 id="prod-name"></h3>
-                            @foreach (var item in Model)
-                                    {
-                                        if (item.Id == 3)
-                                        {
-                                            <h3 id="prod-name">@item.prod_name</h3>
-                                             <label>Description:</label>
-                                            @item.prod_des
-                                        }
-                                    }
-                            <span id="prod-desc">
-                                <table>
-                                    <tr>
-                                        <th>Current Bid</th>
-                                    </tr>
-                                    @foreach (var item in Model)
-                                    {
-                                        if (item.Id == 3)
-                                        {
-                                        <tr>
-                                            <td>@item.prod_cbid</td>
-                                        </tr>
-                                        }
-                                    }
-                                </table>
-                            </span>
-
-
-
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="box box-danger">
-                            <div class="box-header with-border">
-                                <div class="avatar-row">
-                                    <!--Cover Image background, ineditable-->
-                                    <h3 style="color:#ffffff;text-align:center !important;">Item Name</h3>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <img src="http://via.placeholder.com/350x350" />
-
-                        </div>
-                        <div class="col-md-6 pull-right" id="add-item-form">
-
-
-                            <h3 id="prod-name">Fleshlight</h3>
-                            <label>Description:</label>
-                            <span id="prod-desc">
-                                We need to decide on to how the thing will do the image upload beacuse we dunno and google says php so thats a thing and we should
-                                porobably fix it at some poiint coz u know images are inmportant I mean who ever buys things off gumtree
-                                withoiut an image so ya thats very impoortant but we must decide and do the thing ober here so yes.
-                            </span>
-
-
-
-                        </div>
-                    </div>
-
-                    <div class="item">
-                        <div class="box box-danger">
-                            <div class="box-header with-border">
-                                <div class="avatar-row">
-                                    <!--Cover Image background, ineditable-->
-                                    <h3 style="color:#ffffff;text-align:center !important;">Item Name</h3>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <img src="http://via.placeholder.com/350x350" />
-
-                        </div>
-                        <div class="col-md-6 pull-right" id="add-item-form">
-
-
-                            <h3 id="prod-name">Fleshlight</h3>
-                            <label>Description:</label>
-                            <span id="prod-desc">
-                               
-                            </span>
-
-
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Left and right controls -->
-                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                    <span class="glyphicon glyphicon-chevron-left"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                    <span class="glyphicon glyphicon-chevron-right"></span>
-                    <span class="sr-only">Next</span>
-                </a>
+    <h3 style="color:#ffffff;text-align:center !important;">Current Item</h3>
+    @foreach (var item in Model)
+    {
+        if (item.prod_active == 1)
+        {
+            <div class="row">
+            <div class="col-md-6">
+                    <img src="@(item.prod_pic)" width="350" height="350" />
             </div>
-        </div>
-        <!--BID BUTTON-->
-        <div class="col-md-3">
-            <div class="nice-number" tyle="display: block;">
-                <span>Live Bid Price:</span>
-
+            <div class="col-md-6">
+                @using (Html.BeginForm("Edit",
+                                       "Home",
+                                       FormMethod.Post,
+                new { enctype = "multipart/form-data" }))
+                {
+                    
+                    <h3 id="prod-name">@item.prod_name</h3>
+                    <label>Description:</label><br />
+                    @item.prod_des<br />
+                    <label>Minimum sale amount:</label><br />
+                    <p>R @item.prod_sbid<br /></p>
+                    <label>Current Bid:</label><br />
+                    <p>R  @item.prod_cbid<br /><br /></p>
+                    
+                    @Html.AntiForgeryToken()
+                    @Html.EditorFor(model => item.prod_cbid, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => item.prod_cbid, "", new { @class = "text-danger" })<br/>
+                    <p style="padding-left:13%;"><input style="width: 10em;  height: 3em;" type="submit" value="Bid!" class="btn btn-default"></p>
+                }
             </div>
-            <!--END BID BUTTON-->
-        </div>
+            </div>
+        }
+     }
 
 </body>
 

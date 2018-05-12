@@ -1,51 +1,28 @@
 ﻿@model IEnumerable<WebApplication4.Models.Item_table>
 
-@{
-    ViewBag.Title = "Index";
+@{ 
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@{
+    ViewBag.Title = "Catalogue";
+}
+<h2>Catalogue</h2>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.prod_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.prod_des)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.prod_sbid)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.prod_cbid)
-        </th>
-        <th></th>
-    </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.prod_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.prod_des)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.prod_sbid)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.prod_cbid)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+   
+        <div class="row">
+            <div class"="col-md-6">
+                <img src="@(item.prod_pic)" width="350" height="350" />
+                @Html.DisplayFor(modelItem => item.prod_name)
+        
+                @Html.DisplayFor(modelItem => item.prod_des)
+       
+                @Html.DisplayFor(modelItem => item.prod_sbid)
+        
+                @Html.DisplayFor(modelItem => item.prod_cbid)
+            </div>
+       </div>
 }
 
 </table>
