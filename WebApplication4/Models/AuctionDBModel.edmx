@@ -26,6 +26,7 @@
           <Property Name="user_name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="user_email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="user_password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityContainer Name="AuctionDBModelStoreContainer">
           <EntitySet Name="Item_table" EntityType="Self.Item_table" Schema="dbo" store:Type="Tables" />
@@ -61,6 +62,7 @@
           <Property Name="user_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="user_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="user_password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
 
         </EntityType>
       </Schema>
@@ -86,7 +88,8 @@
     <EntitySetMapping Name="User_table">
       <EntityTypeMapping TypeName="IsTypeOf(AuctionDBModel.User_table)">
         <MappingFragment StoreEntitySet="User_table">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="user_name" ColumnName="user_name" />
           <ScalarProperty Name="user_email" ColumnName="user_email" />
           <ScalarProperty Name="user_password" ColumnName="user_password" />
