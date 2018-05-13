@@ -42,6 +42,12 @@ namespace WebApplication4.Models
             return View();
         }
 
+        // GET: Item_table/Auction
+        public ActionResult Auction()
+        {
+            return View();
+        }
+
         // POST: Item_table/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -142,7 +148,5 @@ namespace WebApplication4.Models
             }
             base.Dispose(disposing);
         }
-
-        
     }
 }
