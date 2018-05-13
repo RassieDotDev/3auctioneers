@@ -288,3 +288,6 @@ __pycache__/
 *.xsd.cs
 WebApplication4/AuctionSite.csproj
 WebApplication4/AuctionSite.csproj
+WebApplication4/App_Data/AuctionDB.mdf
+WebApplication4/App_Data/AuctionDB_log.ldf
+WebApplication4/App_Data/AuctionDB_log.ldf
