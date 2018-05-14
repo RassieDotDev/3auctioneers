@@ -207,6 +207,7 @@
       <DependentUpon>AuctionDBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\AuctionDB.mdf" />
@@ -282,7 +283,9 @@
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Content\auctionsite.css" />
     <Content Include="Content\gavel.jpg" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -306,20 +309,19 @@
     <Content Include="Views\User_table\Delete.cshtml" />
     <Content Include="Views\User_table\Details.cshtml" />
     <Content Include="Views\User_table\Edit.cshtml" />
-    <Content Include="Views\User_table\Index_bak.cshtml" />
     <Content Include="Views\User_table\Index.cshtml" />
-<<<<<<< HEAD
+    <Content Include="Views\User_table\Index_bak1.cshtml" />
     <Content Include="Views\Login\Create.cshtml" />
     <Content Include="Views\Login\Delete.cshtml" />
     <Content Include="Views\Login\Details.cshtml" />
     <Content Include="Views\Login\Edit.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\LogOut.cshtml" />
-=======
     <Content Include="Views\Item_table\Auction.cshtml" />
->>>>>>> master
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Combo\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
