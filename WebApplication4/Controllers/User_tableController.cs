@@ -16,9 +16,24 @@ namespace WebApplication4.Controllers
         private AuctionDBEntities db = new AuctionDBEntities();
 
         // GET: User_table
-        public ActionResult Index()
+        //public ActionResult Index()
+        //{
+         //   return View();//(db.User_table.ToList());
+        //}
+
+        public ActionResult Index(int? id)
         {
-            return View();//(db.User_table.ToList());
+
+            if (ModelState.IsValid)
+            {
+                var price = from m in db.User_table
+                            select m;
+
+                return View(price.ToList());
+            }
+
+            return View();
+
         }
 
         // GET: User_table/Details/5
