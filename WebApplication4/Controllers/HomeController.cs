@@ -62,11 +62,22 @@ namespace WebApplication4.Controllers
 
         public ActionResult Auction(int? id)
         {
-            var price = from m in db.Item_table
-                         select m;
 
-            return View(price.ToList());
+            if (Session["Id"] != null)
+            {
+                var price = from m in db.Item_table
+                            select m;
+
+                return View(price.ToList());
+            }
+            else
+            {
+                return RedirectToAction("Auction", "Home");
+            }
+            
 
         }
+
+        
     }
 }

@@ -6,7 +6,14 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<fieldset>
+    <legend> User DashBoard </legend>
 
+    @if (Session["user_name"] != null)
+    {<text>
+            Welcome @Session["user_name"].ToString() </text>
+}
+</fieldset>
 
 <!DOCTYPE html>
 <html>

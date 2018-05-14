@@ -1,0 +1,47 @@
+﻿@model WebApplication4.Models.User_table
+
+@{
+    Layout = null;
+}
+
+
+@using (Html.BeginForm("Login", "Login", FormMethod.Post))
+{
+    <fieldset>
+        <legend>Mvc Simple Login Application Demo</legend>
+
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @if (@ViewBag.Message != null)
+        {
+            <div style="border: 1px solid red">
+                @ViewBag.Message
+            </div>
+        }
+        <table>
+            <tr>
+                <td>@Html.LabelFor(a => a.user_name)</td>
+                <td>@Html.TextBoxFor(a => a.user_name)</td>
+                <td>@Html.ValidationMessageFor(a => a.user_name)</td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(a => a.user_password)
+                </td>
+                <td>
+                    @Html.EditorFor(a => a.user_password, new { htmlAttributes= new { @class = "control-label", @type = "password" }})
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(a => a.user_password)
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Login" />
+                </td>
+                <td></td>
+            </tr>
+        </table>
+    </fieldset>
+}  
