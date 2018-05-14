@@ -7,26 +7,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <fieldset>
-        @if (Session["user_name"] != null)
-        {
+<fieldset>
+    @if (Session["user_name"] != null)
+    {
         <legend>
             <text style="font-weight:bold;font-family:Montserrat;font-size:24pt">
                 Welcome @Session["user_name"].ToString()
             </text>
             <text style="margin-left:50%;">@Html.ActionLink("Logout", "Login", "Login", null, new { @class = "btn btn-default", @style = "font-size:16pt;width:8em;height:2em;text-align:center" })</text>
         </legend>
-        }
-        </fieldset>
-    <html>
-    <head>
-        <title>3 Auctioneers</title>
-        <link href="~/Content/jquery.nice-number.css" rel="stylesheet" />
-    </head>
-    <body>
+    }
+</fieldset>
+<html>
+<head>
+    <title>3 Auctioneers</title>
+    <link href="~/Content/jquery.nice-number.css" rel="stylesheet" />
+</head>
+<body>
 
-        @using (Html.BeginForm())
-        {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <h3 style="color:#ffffff;text-align:center !important;">Current Item</h3>
@@ -53,17 +53,16 @@
                                     });
                                 }
         </script>
-        <button onclick="upcurr()" style="margin-left:5%;height:3em;width:8em;" class="btn btn-default">Bid!</button>
+        <asp:button ID="btVoice" runat="server" style="margin-left:5%;height:3em;width:8em;" class="btn btn-default" onclick="btnVoice_Click, upcurr">Bid!</asp:button>
 
         <div id="show"></div>
-        }
+    }
 
-
-        @{
-            foreach (var item in Model)
+    @{
+        foreach (var item in Model)
+        {
+            if (item.prod_active == 1)
             {
-                if (item.prod_active == 1)
-                {
                 <div class="row">
                     <div class="col-md-6">
                         <img src="@(item.prod_pic)" width="350" height="350" />
@@ -131,12 +130,12 @@
                         </script>
                     </div>
                 </div>
-                }
             }
         }
+    }
 
 
-    </body>
+</body>
 
 
 </html>
