@@ -24,15 +24,15 @@ public partial class Item_table
 
     public string prod_des { get; set; }
 
-    public double prod_sbid { get; set; }
+    public Nullable<double> prod_sbid { get; set; }
 
-    public double prod_cbid { get; set; }
+    public Nullable<double> prod_cbid { get; set; }
 
     public string prod_pic { get; set; }
 
-    public Nullable<System.TimeSpan> prod_time { get; set; }
+    public Nullable<System.DateTime> prod_time { get; set; }
 
-    public short prod_active { get; set; }
+    public Nullable<short> prod_active { get; set; }
 
 }
 
