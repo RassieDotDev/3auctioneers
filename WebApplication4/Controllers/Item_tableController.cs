@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
@@ -19,6 +20,11 @@ namespace WebApplication4.Models
         public ActionResult Index()
         {
             return View(db.Item_table.ToList());
+        }
+
+        public ActionResult Edit()
+        {
+            return View();
         }
 
         // GET: Item_table/Details/5
@@ -43,10 +49,10 @@ namespace WebApplication4.Models
         }
 
         // GET: Item_table/Auction
-        public ActionResult Auction()
+        /*public ActionResult Auction()
         {
             return View();
-        }
+        }*/
 
         // POST: Item_table/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -83,36 +89,11 @@ namespace WebApplication4.Models
             return View(item_table);
         }
 
-        // GET: Item_table/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Item_table item_table = db.Item_table.Find(id);
-            if (item_table == null)
-            {
-                return HttpNotFound();
-            }
-            return View(item_table);
-        }
-
         // POST: Item_table/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,prod_name,prod_des,prod_sbid,prod_cbid")] Item_table item_table)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(item_table).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(item_table);
-        }
+        
+
 
         // GET: Item_table/Delete/5
         public ActionResult Delete(int? id)
@@ -138,6 +119,38 @@ namespace WebApplication4.Models
             db.Item_table.Remove(item_table);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Auction([Bind(Include = "Id,prod_name,prod_des,prod_sbid,prod_cbid")] Item_table item_table)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(item_table).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Auction");
+                }
+                return View(item_table);
+            }
+            catch (DbEntityValidationException e)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.)
+                ModelState.AddModelError("", e.ToString() + "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                return View();
+            }
+
+        }
+
+        public ActionResult Auction(int? id)
+        {
+            var price = from m in db.Item_table
+                        select m;
+
+            return View();
+
         }
 
         protected override void Dispose(bool disposing)
