@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.IO;
 using System.Linq;
@@ -43,48 +44,20 @@ namespace WebApplication4.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,prod_name,prod_des,prod_sbid,prod_cbid,prod_pic")] Item_table item_table, HttpPostedFileBase file)
+        public ActionResult Auction(Item_table item_table, int newbid, int? Id)
         {
 
             if (ModelState.IsValid)
             {
-                string path = "";
-                if (file != null && file.ContentLength > 0)
-                    try
-                    {
-                        path = "\\Images\\" + Path.GetFileName(file.FileName);
-                        file.SaveAs(path);
-                        ViewBag.Message = "File uploaded successfully";
-                    }
-                    catch (Exception ex)
-                    {
-                        ViewBag.Message = "ERROR:" + ex.Message.ToString();
-                    }
-                else
-                {
-                    ViewBag.Message = "You have not specified a file.";
-                }
-                item_table.prod_pic = path;
-                db.Item_table.Add(item_table);
+                Item_table item = new Item_table();
+                item = db.Item_table.Find(Id);
+                item.prod_cbid = newbid;
+                db.Entry(item).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Auction", "Home");
 
             }
             return View(item_table);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,prod_name,prod_des,prod_sbid,prod_cbid")] Item_table item_table)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(item_table).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(item_table);
-            
         }
 
         public ActionResult Auction(int? id)

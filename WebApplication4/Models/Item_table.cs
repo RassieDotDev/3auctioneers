@@ -12,6 +12,7 @@ namespace WebApplication4.Models
     using System;
     using System.Collections.Generic;
     
+<<<<<<< HEAD
     public partial class Item_table
     {
         public int Id { get; set; }

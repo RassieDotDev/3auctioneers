@@ -308,12 +308,16 @@
     <Content Include="Views\User_table\Edit.cshtml" />
     <Content Include="Views\User_table\Index_bak.cshtml" />
     <Content Include="Views\User_table\Index.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Login\Create.cshtml" />
     <Content Include="Views\Login\Delete.cshtml" />
     <Content Include="Views\Login\Details.cshtml" />
     <Content Include="Views\Login\Edit.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\LogOut.cshtml" />
+=======
+    <Content Include="Views\Item_table\Auction.cshtml" />
+>>>>>>> master
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -10,13 +10,13 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="prod_name" Type="text" Nullable="false" />
+          <Property Name="prod_name" Type="text" />
           <Property Name="prod_des" Type="text" />
-          <Property Name="prod_sbid" Type="float" Nullable="false" />
-          <Property Name="prod_cbid" Type="float" Nullable="false" />
+          <Property Name="prod_sbid" Type="float" />
+          <Property Name="prod_cbid" Type="float" />
           <Property Name="prod_pic" Type="text" />
-          <Property Name="prod_time" Type="time" Precision="7" />
-          <Property Name="prod_active" Type="smallint" Nullable="false" />
+          <Property Name="prod_time" Type="datetime2" Precision="7" />
+          <Property Name="prod_active" Type="smallint" />
         </EntityType>
         <EntityType Name="User_table">
           <Key>
@@ -41,13 +41,13 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="prod_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="prod_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="prod_des" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="prod_sbid" Type="Double" Nullable="false" />
-          <Property Name="prod_cbid" Type="Double" Nullable="false" />
+          <Property Name="prod_sbid" Type="Double" />
+          <Property Name="prod_cbid" Type="Double" ConcurrencyMode="None" />
           <Property Name="prod_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="prod_time" Type="Time" Precision="7" />
-          <Property Name="prod_active" Type="Int16" Nullable="false" />
+          <Property Name="prod_time" Type="DateTime" />
+          <Property Name="prod_active" Type="Int16" />
         </EntityType>
         <EntityContainer Name="AuctionDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Item_table" EntityType="Self.Item_table" />
