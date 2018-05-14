@@ -10,13 +10,13 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="prod_name" Type="text" />
+          <Property Name="prod_name" Type="text" Nullable="false" />
           <Property Name="prod_des" Type="text" />
-          <Property Name="prod_sbid" Type="float" />
-          <Property Name="prod_cbid" Type="float" />
+          <Property Name="prod_sbid" Type="float" Nullable="false" />
+          <Property Name="prod_cbid" Type="float" Nullable="false" />
           <Property Name="prod_pic" Type="text" />
           <Property Name="prod_time" Type="datetime2" Precision="7" />
-          <Property Name="prod_active" Type="smallint" />
+          <Property Name="prod_active" Type="smallint" Nullable="false" />
         </EntityType>
         <EntityType Name="User_table">
           <Key>
@@ -26,6 +26,7 @@
           <Property Name="user_name" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="user_email" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="user_password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="isActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityContainer Name="AuctionDBModelStoreContainer">
           <EntitySet Name="Item_table" EntityType="Self.Item_table" Schema="dbo" store:Type="Tables" />
@@ -40,13 +41,13 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="prod_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="prod_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="prod_des" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="prod_sbid" Type="Double" />
-          <Property Name="prod_cbid" Type="Double" ConcurrencyMode="None" />
+          <Property Name="prod_sbid" Type="Double" Nullable="false" />
+          <Property Name="prod_cbid" Type="Double" ConcurrencyMode="None" Nullable="false" />
           <Property Name="prod_pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="prod_time" Type="DateTime" />
-          <Property Name="prod_active" Type="Int16" />
+          <Property Name="prod_time" Type="DateTime" Precision="7" />
+          <Property Name="prod_active" Type="Int16" Nullable="false" />
         </EntityType>
         <EntityContainer Name="AuctionDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Item_table" EntityType="Self.Item_table" />
@@ -61,6 +62,7 @@
           <Property Name="user_name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="user_email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="user_password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isActive" Type="Boolean" Nullable="false" />
 
         </EntityType>
       </Schema>
@@ -86,7 +88,8 @@
     <EntitySetMapping Name="User_table">
       <EntityTypeMapping TypeName="IsTypeOf(AuctionDBModel.User_table)">
         <MappingFragment StoreEntitySet="User_table">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="user_name" ColumnName="user_name" />
           <ScalarProperty Name="user_email" ColumnName="user_email" />
           <ScalarProperty Name="user_password" ColumnName="user_password" />

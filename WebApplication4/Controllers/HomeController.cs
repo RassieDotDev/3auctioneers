@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -44,29 +45,46 @@ namespace WebApplication4.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Auction(Item_table item_table, int newbid, int? Id)
+        public ActionResult Auction(Item_table item_table, double? newbid, int? Id)
         {
-
-            if (ModelState.IsValid)
+            var price = from m in db.Item_table
+                        select m;
+            if (newbid == null)
             {
-                Item_table item = new Item_table();
-                item = db.Item_table.Find(Id);
-                item.prod_cbid = newbid;
-                db.Entry(item).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Auction", "Home");
-
+                
+                return View(price.ToList());
             }
-            return View(item_table);
+            else
+            {
+                using (var dbContextTransaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        Item_table f = (from data in db.Item_table where data.Id == Id select data).FirstOrDefault();
+                        f.prod_cbid = (double)newbid;
+                        db.SaveChanges();
+
+                        dbContextTransaction.Commit();
+                        var upInfo = from m in db.Item_table
+                                    select m;
+                        return View(upInfo.ToList());
+                    }
+                    catch (Exception /*ex*/)
+                    {
+                        return View(price.ToList());
+                    }
+                }
+            }
+
         }
 
         public ActionResult Auction(int? id)
         {
-            var price = from m in db.Item_table
-                         select m;
-
+                var price = from m in db.Item_table
+                            select m;
             return View(price.ToList());
-
         }
+
+        
     }
 }

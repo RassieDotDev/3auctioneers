@@ -7,117 +7,136 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<html>
-<head>
-    <title>3 Auctioneers</title>
-    <link href="~/Content/jquery.nice-number.css" rel="stylesheet" />
-
-</head>
-<body>
-
-
-    <h3 style="color:#ffffff;text-align:center !important;">Current Item</h3>
-    @foreach (var item in Model)
-    {
-        if (item.prod_active == 1)
+    <fieldset>
+        @if (Session["user_name"] != null)
         {
-            <div class="row">
-                <div class="col-md-6">
-                    <img src="@(item.prod_pic)" width="350" height="350" />
-                </div>
-                <div class="col-md-6">
+        <legend>
+            <text style="font-weight:bold;font-family:Montserrat;font-size:24pt">
+                Welcome @Session["user_name"].ToString()
+            </text>
+            <text style="margin-left:50%;">@Html.ActionLink("Logout", "Login", "Login", null, new { @class = "btn btn-default", @style = "font-size:16pt;width:8em;height:2em;text-align:center" })</text>
+        </legend>
+        }
+        </fieldset>
+    <html>
+    <head>
+        <title>3 Auctioneers</title>
+        <link href="~/Content/jquery.nice-number.css" rel="stylesheet" />
+    </head>
+    <body>
 
-                    <h3 id="prod-name">@item.prod_name</h3>
-                    <p style="font-weight: bold">
-                        Time Remaining: <div id="demo">
-                        </div>
-                    </p>
-                    <input type="hidden" value="@item.prod_time" id="date">
-                    <label>Description:</label><br />
-                    @item.prod_des<br />
-                    <label>Minimum sale amount:</label><br />
-                    <p>R @item.prod_sbid<br /></p>
-                    <label>Current Bid:</label><br />
-                    <p>R  @item.prod_cbid<br /><br /></p>
-                    <input type="hidden" value="@item.prod_sbid" id="sbid">
-                    <input type="hidden" value="@item.prod_cbid" id="cbid">
-                    @using (Html.BeginForm("Auction", "Home"))
-                    {
-                        @Html.AntiForgeryToken()
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                        @Html.HiddenFor(model => item.Id)
+        @using (Html.BeginForm())
+        {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <h3 style="color:#ffffff;text-align:center !important;">Current Item</h3>
+        <p style="font-weight: bold">Enter bid below:</p>
+        <input type="text" id="upcbid"><br /><br />
+        <script>
+                function zz() {
+                    var duh = document.getElementById("upcbid").value();
+                    document.getElementById("demo").innerHTML = duh;
+                }
 
-                        <p style="font-weight: bold">Enter bid below:</p>
-                        <input type="text" id="upcbid"><br /><br />
-                        <button onclick = "upcurr()" style = "margin-left:5%;height:3em;width:8em;" class="btn btn-default">Bid!</button>
-                        <div id="dataDiv"/>
+                function upcurr() {
+                    var totalBid = document.getElementById("cbid").value() + document.getElementById("upcbid").value()
+                                    $.ajax({
+                                        type: "POST",
+                                        data: {
+                                            item_table: @Model,
+                                            newbid: $("#cbid").value,
+                                            Id: $("#cId").value()
+                                        },
+                                        success: function (result, status, xhr) {
+                                            $("#dataDiv").html(result);
+                                        }
+                                    });
+                                }
+        </script>
+        <button onclick="upcurr()" style="margin-left:5%;height:3em;width:8em;" class="btn btn-default">Bid!</button>
+
+        <div id="show"></div>
+        }
+
+
+        @{
+            foreach (var item in Model)
+            {
+                if (item.prod_active == 1)
+                {
+                <div class="row">
+                    <div class="col-md-6">
+                        <img src="@(item.prod_pic)" width="350" height="350" />
+                    </div>
+                    <div class="col-md-6">
+
+                        <h3 id="prod-name">@item.prod_name</h3>
+                        <p style="font-weight: bold">
+                            Time Remaining: <div id="demo">
+                            </div>
+                        </p>
+                        <input type="hidden" value="@item.prod_time" id="date">
+                        <label>Description:</label><br />
+                        @item.prod_des<br />
+                        <label>Minimum sale amount:</label><br />
+                        <p>R @item.prod_sbid<br /></p>
+                        <label>Current Bid:</label><br />
+                        <p>R  @item.prod_cbid<br /><br /></p>
+                        <input type="hidden" value="@item.prod_sbid" id="sbid">
+                        <input type="hidden" value="@item.prod_cbid" id="cbid">
+                        <input type="hidden" value="@item.Id" id="cId">
+
                         <script>
-                            function upcurr() {
-                                $.ajax({
-                                    type: "POST",
-                                    url: "/Home/Auction",
-                                    contentType: "application/json; charset=utf-8",
-                                   data: '{"newbid":"' + $("#upcbid").val() + '","Id":"' + @item.Id + '"}',  
-                                   dataType: "html",
-                                    success: function (result, status, xhr) {
-                                        $("#dataDiv").html(result);
-                                    },
-                                    error: function (xhr, status, error) {
-                                        $("#dataDiv").html("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+                            // Set the date we're counting down to
+                            // Get date from database and update here, then is global! yay for clever gordon
+                            var input = document.getElementById("date").value;
+                            var sbid = document.getElementById("sbid").value;
+                            var cbid = document.getElementById("cbid").value;
+                            var parts = input.split("/");
+                            var partsv2 = parts[2].split(" ");
+                            var date = parts[0] + "/" + parts[1] + "/" + partsv2[0] + ", " + partsv2[1];
+                            var dates = new Date(date).toString();
+                            var countDownDate = new Date(dates).getTime();
+
+
+                            // Update the count down every 1 second
+                            var x = setInterval(function () {
+
+                                // Get todays date and time
+                                var now = new Date().getTime();
+
+                                // Find the distance between now an the count down date
+                                var distance = countDownDate - now;
+
+                                // Time calculations for days, hours, minutes and seconds
+                                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                                // Display the result in the element with id="demo"
+                                document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
+
+
+                                // If the count down is finished, write some text
+                                if (distance < 0) {
+                                    if (cbid >= sbid) {
+                                        clearInterval(x);
+                                        document.getElementById("demo").innerHTML = "SOLD!";
                                     }
-                                })
-                            }
-                            </script>
-                        }
-                    <script>
-                        // Set the date we're counting down to
-                        // Get date from database and update here, then is global! yay for clever gordon
-                        var input = document.getElementById("date").value;
-                        var sbid = document.getElementById("sbid").value;
-                        var cbid = document.getElementById("cbid").value;
-                        var upcbid = document.getElementById("upcbid").value;
-                        var parts = input.split("/");
-                        var partsv2 = parts[2].split(" ");
-                        var date = new Date(parts[1] + " " + parts[0] + " " + partsv2[0] + ", " + partsv2[1]);
-                        var dates = new Date(date).toString();
-                        var countDownDate = new Date(dates).getTime();
-
-
-                        // Update the count down every 1 second
-                        var x = setInterval(function () {
-
-                            // Get todays date and time
-                            var now = new Date().getTime();
-
-                            // Find the distance between now an the count down date
-                            var distance = countDownDate - now;
-
-                            // Time calculations for days, hours, minutes and seconds
-                            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                            // Display the result in the element with id="demo"
-                            document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
-
-                            // If the count down is finished, write some text
-                            if (distance < 0) {
-                                if (cbid >= sbid) {
-                                    clearInterval(x);
-                                    document.getElementById("demo").innerHTML = "SOLD!";
+                                    else {
+                                        clearInterval(x);
+                                        location.reload();
+                                    }
                                 }
-                                else {
-                                    clearInterval(x);
-                                    location.reload();
-                                }
-                            }
-                        }, 1000);
-                    </script>
+                            }, 1000);
+                        </script>
+                    </div>
                 </div>
-            </div>
-}
-             }
+                }
+            }
+        }
 
-</body>
+
+    </body>
 
 
 </html>
