@@ -33,6 +33,7 @@ namespace WebApplication4.Controllers
                     {
                         Session["Id"] = objUser.Id.ToString();
                         Session["user_name"] = objUser.user_name.ToString();
+                        Session["isActive"] = objUser.isActive.ToString();
                         return RedirectToAction("Auction", "Home");
                     }
                 }
@@ -43,12 +44,13 @@ namespace WebApplication4.Controllers
         public ActionResult LogOut(int? Id)
         {
             FormsAuthentication.SignOut();
-          
-            
+
+            Session["isActive"] = null;
+            Session["user_name"] = null;
             Session.Clear();
             Response.Cookies.Clear();
             Session.RemoveAll();
-            Session["Login"] = null;
+           
             Session.Abandon();
             return RedirectToAction("Login", "Home"); ;
 
@@ -157,5 +159,8 @@ namespace WebApplication4.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+
     }
 }

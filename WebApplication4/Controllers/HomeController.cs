@@ -54,6 +54,9 @@ namespace WebApplication4.Controllers
             return View();
         }
 
+
+       
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Auction(double? newbid, int? Id)
