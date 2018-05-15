@@ -200,7 +200,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AuctionDBModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\AuctionModel.cs" />
     <Compile Include="Models\Item_table.cs">
       <DependentUpon>AuctionDBModel.tt</DependentUpon>
     </Compile>

@@ -10,8 +10,6 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Script.Services;
-using System.Web.Services;
 using WebApplication4.Models;
 
 namespace WebApplication4.Controllers
@@ -47,19 +45,14 @@ namespace WebApplication4.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Auction(double? newbid, int? Id)
+        public ActionResult Auction(Item_table item_table, double? newbid, int? Id)
         {
             var price = from m in db.Item_table
                         select m;
-
-            var model = new Models.AuctionModel
-            {
-                item_table = price
-            };
-
             if (newbid == null)
             {
-                return View(model);
+                
+                return View(price.ToList());
             }
             else
             {
@@ -74,16 +67,11 @@ namespace WebApplication4.Controllers
                         dbContextTransaction.Commit();
                         var upInfo = from m in db.Item_table
                                     select m;
-                        var models = new Models.AuctionModel
-                        {
-                            item_table = upInfo
-                        };
-
-                        return View(models);
+                        return View(upInfo.ToList());
                     }
                     catch (Exception /*ex*/)
                     {
-                        return View(model);
+                        return View(price.ToList());
                     }
                 }
             }
@@ -92,15 +80,9 @@ namespace WebApplication4.Controllers
 
         public ActionResult Auction(int? id)
         {
-             var price = from m in db.Item_table
+                var price = from m in db.Item_table
                             select m;
-
-            var model = new Models.AuctionModel
-            {
-                item_table = price
-            };
-
-            return View(model);
+            return View(price.ToList());
         }
 
         
