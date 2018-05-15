@@ -19,7 +19,9 @@
     }
 </fieldset>
 <html>
+
 <head>
+
     <title>3 Auctioneers</title>
     <link href="~/Content/jquery.nice-number.css" rel="stylesheet" />
 </head>
@@ -58,6 +60,7 @@
         <div id="show"></div>
     }
 
+
     @{
         foreach (var item in Model)
         {
@@ -80,7 +83,26 @@
                         <label>Minimum sale amount:</label><br />
                         <p>R @item.prod_sbid<br /></p>
                         <label>Current Bid:</label><br />
-                        <p>R  @item.prod_cbid<br /><br /></p>
+                        <p id="curbid">R <br /><br /></p>
+                        <script src="~/Scripts/jquery-1.10.2.js"></script>
+                        <script src="~/Scripts/jquery.signalR-2.2.3.js"></script>
+                        <script type="text/javascript" >
+                            $(function () {
+                                var con = $.hubConnection();             
+                                var hub = con.createHubProxy('LiveBid');
+                                hub.on('onBidRecorded', function(i) {
+                                    $('#curbid').text(i);
+                                });
+                                con.start(function () {
+                                    hub.invoke('AddBid');
+                                    
+                                });
+                                
+
+                            })
+
+
+                        </script>
                         <input type="hidden" value="@item.prod_sbid" id="sbid">
                         <input type="hidden" value="@item.prod_cbid" id="cbid">
                         <input type="hidden" value="@item.Id" id="cId">
