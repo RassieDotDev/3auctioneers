@@ -47,12 +47,13 @@ h1 {
 
 
  #formdiv{
-        background-color: rgba(0, 0, 0, 0.4);   
+        background-color: rgba(0, 0, 0, 0.6);   
         height: 100vh;
         padding-top:30%;
         align-items: center;
         padding-left: 35%;
-
+        margin-left: -2%;
+        width: 105% !important ;
  }
 #regModal{
     color: black;

@@ -6,7 +6,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<!--
 <fieldset>
     @{ if (Session["user_name"] != null && Session["isActive"] != null)
         {
@@ -18,12 +18,12 @@
         </legend>
         }
         else {
-            
+
             Response.Redirect("~/Login/Login");
 
-            } 
+            }
         }
-</fieldset>
+</fieldset>-->
 <html>
 
 <head>
@@ -33,7 +33,7 @@
 </head>
 <body>
 
-    
+
     <div id="divAudio_Player" class="hidden">
         <audio id="audio_player">
             <source id="audio_player_wav" src="@Url.Action(" PlayTextArea", "Home", new { text = "type something in first" })" type="audio/mp3" />
@@ -46,7 +46,7 @@
     @using (Html.BeginForm())
     {
 
-        @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken();
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <h3 style="color:#ffffff;text-align:center !important;">Current Item</h3>
@@ -64,9 +64,10 @@
                         <h3 id="prod-name">@item.prod_name</h3>
                         <p style="font-weight: bold">
                             Time Remaining: <div id="demo">
-                                                <audio id="audio_player1">
-                                                     <source id="audio_player_wav1" src="@Url.Action("TimerAud", "Home", new { text = "type something in first" })" type="audio/mp3" />
-                                            </audio></div>
+                                <audio id="audio_player1">
+                                    <source id="audio_player_wav1" src="@Url.Action("TimerAud", "Home", new { text = "type something in first" })" type="audio/mp3" />
+                                </audio>
+                            </div>
                         </p>
                         <input type="hidden" value="@item.prod_time" id="date">
                         <label>Description:</label><br />
@@ -100,6 +101,19 @@
 @section scripts{
 
     <script type="text/javascript">
+
+
+            var con = $.hubConnection();
+            var hub = con.createHubProxy('LiveBid');
+            var livvy = $("#combBid").val();
+            debugger;
+            hub.on('onBidRecorded', function (i) {
+                $('#currbid').text(i);
+            });
+            con.start(function () {
+                hub.invoke('AddBid', livvy);
+            });
+
 
         //$(function () {
             //$('#playAudio').click(function () {
