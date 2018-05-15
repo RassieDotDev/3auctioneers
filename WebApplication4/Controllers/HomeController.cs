@@ -144,20 +144,6 @@ namespace WebApplication4.Controllers
             return View(price.ToList());
         }
 
-        public void AuctionUpdate()
-        {
-
-            // Initialize a new instance of the SpeechSynthesizer.
-            SpeechSynthesizer synth = new SpeechSynthesizer();
-
-            // Configure the audio output. 
-            synth.SetOutputToDefaultAudioDevice();
-            synth.Volume = 100;
-            // Speak a string.
-            synth.Speak("Going Once, Going Twice!  SOLD!!");   
-            
-        }
-
         public FileResult TextToMp3(string text)
         {
             //Primary memory stream for storing mp3 audio

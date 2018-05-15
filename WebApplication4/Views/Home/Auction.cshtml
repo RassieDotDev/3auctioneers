@@ -64,8 +64,10 @@
                         <h3 id="prod-name">@item.prod_name</h3>
                         <p style="font-weight: bold">
                             Time Remaining: <div id="demo">
+                            </div>
+                            <div id="aud">
                                 <audio id="audio_player1">
-                                    <source id="audio_player_wav1" src="@Url.Action("TimerAud", "Home", new { text = "type something in first" })" type="audio/mp3" />
+                                    <source id="audio_player_wav1" src="@Url.Action("PlayTextArea", "Home", new { text = "type something in first" })" type="audio/mp3" />
                                 </audio>
                             </div>
                         </p>
@@ -86,12 +88,13 @@
                         <input type="hidden" value="@item.prod_sbid" id="sbid">
                         <input type="hidden" value="@item.prod_cbid" id="cbid">
                         <input type="hidden" value="@item.Id" id="cId" />
-
+                        <input type="hidden" id="prod_name" value="@item.prod_name" />
                     </div>
                 </div>
             }
         }
     }
+    
 </body>
 
 </html>
@@ -99,34 +102,35 @@
 
 
 @section scripts{
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.2.3.js"></script>
 
     <script type="text/javascript">
 
+            
 
-            var con = $.hubConnection();
-            var hub = con.createHubProxy('LiveBid');
-            var livvy = $("#combBid").val();
-            debugger;
-            hub.on('onBidRecorded', function (i) {
-                $('#currbid').text(i);
-            });
-            con.start(function () {
-                hub.invoke('AddBid', livvy);
-            });
-
-
+        var cntr = parseInt(0);
         //$(function () {
             //$('#playAudio').click(function () {
             $(document).ready(function () {
                 var newVal = $("#livbid").val();
-                var newUrl = '@Url.Action("PlayTextArea", "Home")?text=' + "New bid! " + newVal.toString();
-                //encodeURIComponent($('#inputText').text());
+                var prodNme = $("#prod_name").val()
 
+                if (cntr == 0) {
+                    var newUrl = '@Url.Action("PlayTextArea", "Home")?text=' + prodNme.toString();
+                    //encodeURIComponent($('#inputText').text());
+                    cntr += 1;
+                    debugger
+                }
+                else {
+                    var newUrl = '@Url.Action("PlayTextArea", "Home")?text=' + "New bid! " + newVal.toString();
+                }
 
                 var new_audio = $(this).attr('rel');
                 var source = '<audio id="audio_player">';
                 source += '<source id="audio_player_wav" src="' + newUrl + '" type="audio/mp3" />';
                 source += '</audio>';
+                debugger
                 //play it
                 setTimeout(function() {
                             $('#divAudio_Player').html(source);
@@ -137,13 +141,14 @@
 //});
 
 
+
         $(document).ready(function () {
             // Set the date we're counting down to
             // Get date from database and update here, then is global! yay for clever gordon
             var input = document.getElementById("date").value;
             var parts = input.split("/");
             var partsv2 = parts[2].split(" ");
-            var date = parts[1] + " " + parts[0] + " " + partsv2[0] + ", " + partsv2[1];
+            var date = parts[0] + " " + parts[1] + " " + partsv2[0] + ", " + partsv2[1];
             var dates = new Date(date).toString();
             var countDownDate = new Date(dates).getTime();
 
@@ -155,7 +160,7 @@
 
                 // Find the distance between now an the count down date
                 var distance = countDownDate - now;
-
+                //debugger
                 // Time calculations for days, hours, minutes and seconds
                 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
@@ -163,61 +168,29 @@
                 // Display the result in the element with id="demo"
                 document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
 
-
                 // If the count down is finished, write some text
-                if (distance <= 0) {
-
-                    clearInterval(x);
-                    document.getElementById("demo").innerHTML = "Sold at R" + $("#cbid").val();
-                    upd()
-                }  
-                
-                else if (distance <= 20) {
-                    var newUrl = '@Url.Action("TimerAud", "Home")?text='+ "Going once, Going twice,  SOLD!"
-
-                    var new_audio = $(this).attr('rel');
-                    var source = '<audio id="audio_player1">';
-                    source += '<source id="audio_player_wav1" src="' + newUrl + '" type="audio/mp3" />';
-                    source += '</audio>';
-                    //play it
-                    setTimeout(function () {
-                        $('#demo').html(source);
-                        var aud = $('#audio_player').get(0);
-                        aud.play();
-                    }, 500);
-
+                if (distance < 0) {
+                    if (cbid >= sbid) {
+                        clearInterval(x);
+                        document.getElementById("demo").innerHTML = "SOLD!";
+                    }
+                    else {
+                        clearInterval(x);
+                        location.reload();
+                    }
                 }
             }, 1000);
         });
 
-        function upd() {
-            var id = parseInt($("#cId").val());
-
-            var newId = id + 1;
-            var token = $('[name=__RequestVerificationToken]').val();
-                    $.ajax({
-                        url: '@Url.Action("AuctionPost", "Home")',
-                        data: { __RequestVerificationToken: token, 'newId': newId, 'Id': id},
-                        type: 'POST',
-                        success: function (data) {
-                            
-                        }
-            });
-                    $.ajax({
-                        url: '@Url.Action("Delete", "Home")',
-                        data: { __RequestVerificationToken: token, 'Id': id},
-                        type: 'POST',
-                        success: function (data) {
-                            
-                        }
-                });
-                location.reload();
-        }
+        var combBid = 0;
         function upvals() {
 
             var value = parseInt(document.getElementById("cbid").value);
             var value2 = parseInt(document.getElementById("upcbid").value);
+            //var res = value + value2
             var ivalue = parseInt(document.getElementById("cId").value);
+            //document.getElementById("newbid").innerHtml = res;
+            //document.getElementById("Id").innerHTML = ivalue;
             upcurr();
         }
         function upcurr() {
@@ -228,6 +201,7 @@
             combBid = bid + upbid;
 
             var id = $("#cId").val();
+
             var token = $('[name=__RequestVerificationToken]').val();
             $.ajax({
                 url: '@Url.Action("Auction", "Home")',
