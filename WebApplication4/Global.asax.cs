@@ -23,8 +23,8 @@ namespace WebApplication4
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
 
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
             //check for bin files to be loaded
             CheckAddBinPath();
 
