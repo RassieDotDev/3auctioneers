@@ -27,20 +27,35 @@
 </head>
 <body>
 
+    
+    <div id="divAudio_Player" class="hidden">
+        <audio id="audio_player">
+            <source id="audio_player_wav" src="@Url.Action(" PlayTextArea", "Home", new { text = "type something in first" })" type="audio/mp3" />
+            <embed height="50" width="100"
+                   src="@Url.Action("PlayTextArea", "Home", new { text = "type something in first" })">
+        </audio>
+    </div>
+
+
     @using (Html.BeginForm())
     {
+
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
         <h3 style="color:#ffffff;text-align:center !important;">Current Item</h3>
+
         <p style="font-weight: bold">Enter bid below:</p>
-        <input type="text" id="upcbid"><br /><br /
-        <asp:button ID="btVoice" runat="server" style="margin-left:5%;height:3em;width:8em;" class="btn btn-default" onclick="btnVoice_Click, upcurr">Bid!</asp:button>
+
+        <input type="text" id="upcbid"><br /><br />
+
+        <button ID="btVoice" runat="server" style="margin-left:5%;height:3em;width:8em;" class="btn btn-default" onclick="AuctionUpdate(), upcurr()">Bid!</button>
 
         <div id="show"></div>
-    }
 
 
-    @{
+
+
         foreach (var item in Model)
         {
             if (item.prod_active == 1)
@@ -55,16 +70,18 @@
                         <h3 id="prod-name">@item.prod_name</h3>
                         <p style="font-weight: bold">
                             Time Remaining: <div id="demo">
-                            </div>
+                                                <audio id="audio_player1">
+                                                     <source id="audio_player_wav1" src="@Url.Action("TimerAud", "Home", new { text = "type something in first" })" type="audio/mp3" />
+                                            </audio></div>
                         </p>
                         <input type="hidden" value="@item.prod_time" id="date">
                         <label>Description:</label><br />
                         @item.prod_des<br />
                         <label>Minimum sale amount:</label><br />
                         <p>R @item.prod_sbid<br /></p>
-                        <label>Current Bid:</label><br >
+                        <label>Current Bid:</label><br>
                         <div id="currbid">R  <br /><br /></div>
-                        <input type="hidden" value="@item.prod_cbid" id="livbid"/>
+                        <input type="hidden" value="@item.prod_cbid" id="livbid" />
                         <script type="text/javascript">
                             $(docment).ready(function () {
                                 var con = $.hubConnection();
@@ -91,13 +108,37 @@
                 </div>
             }
         }
+    }
 
-    </body>
+
 </html>
 
 
 @section scripts{
     <script>
+
+        //$(function () {
+            //$('#playAudio').click(function () {
+            $(document).ready(function () {
+                var newVal = $("#livbid").val();
+                debugger;
+                var newUrl = '@Url.Action("PlayTextArea", "Home")?text=' + "New bid! " + newVal.toString();
+                //encodeURIComponent($('#inputText').text());
+
+
+                var new_audio = $(this).attr('rel');
+                var source = '<audio id="audio_player">';
+                source += '<source id="audio_player_wav" src="' + newUrl + '" type="audio/mp3" />';
+                source += '</audio>';
+                //play it
+                setTimeout(function() {
+                            $('#divAudio_Player').html(source);
+                    var aud = $('#audio_player').get(0);
+                    aud.play();
+             }, 500);
+    });
+//});
+
 
         $(document).ready(function () {
             // Set the date we're counting down to
@@ -105,7 +146,7 @@
             var input = document.getElementById("date").value;
             var parts = input.split("/");
             var partsv2 = parts[2].split(" ");
-            var date = parts[1] + " " + parts[0] + " " + partsv2[0] + ", " + partsv2[1];
+            var date = parts[0] + " " + parts[1] + " " + partsv2[0] + ", " + partsv2[1];
             var dates = new Date(date).toString();
             var countDownDate = new Date(dates).getTime();
 
@@ -137,6 +178,21 @@
 
                         location.reload();
                     }
+                }
+                else if (distance <= 20) {
+                    var newUrl = '@Url.Action("TimerAud", "Home")?text='+ "Going once, Going twice,  SOLD!"
+
+                    var new_audio = $(this).attr('rel');
+                    var source = '<audio id="audio_player1">';
+                    source += '<source id="audio_player_wav1" src="' + newUrl + '" type="audio/mp3" />';
+                    source += '</audio>';
+                    //play it
+                    setTimeout(function () {
+                        $('#demo').html(source);
+                        var aud = $('#audio_player').get(0);
+                        aud.play();
+                    }, 500);
+
                 }
             }, 1000);
         });
@@ -171,7 +227,14 @@
                 }
             });
         }
+
+
+
+         
         
+
+
+
     </script>
 }
 
