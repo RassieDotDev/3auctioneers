@@ -156,8 +156,104 @@
         }
     }
 
+<<<<<<< HEAD
+@section scripts{
+    <script>
+
+        $(document).ready(function () {
+            // Set the date we're counting down to
+            // Get date from database and update here, then is global! yay for clever gordon
+            var input = document.getElementById("date").value;
+            var parts = input.split("/");
+            var partsv2 = parts[2].split(" ");
+            var date = parts[1] + " " + parts[0] + " " + partsv2[0] + ", " + partsv2[1];
+            var dates = new Date(date).toString();
+            var countDownDate = new Date(dates).getTime();
+
+            // Update the count down every 1 second
+            var x = setInterval(function () {
+
+                // Get todays date and time
+                var now = new Date().getTime();
+
+                // Find the distance between now an the count down date
+                var distance = countDownDate - now;
+
+                // Time calculations for days, hours, minutes and seconds
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Display the result in the element with id="demo"
+                document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
+
+
+                // If the count down is finished, write some text
+                if (distance < 0) {
+                    if (cbid >= sbid) {
+                        clearInterval(x);
+                        document.getElementById("demo").innerHTML = "SOLD!";
+                    }
+                    else {
+                        clearInterval(x);
+
+                        location.reload();
+                    }
+                }
+            }, 1000);
+        });
+
+
+        function upvals() {
+            var value = parseInt(document.getElementById("cbid").value);
+            var value2 = parseInt(document.getElementById("upcbid").value);
+            var res = value + value2
+            var ivalue = parseInt(document.getElementById("cId").value);
+            document.getElementById("newbid").innerHtml = res;
+            document.getElementById("Id").innerHTML = ivalue;
+            upcurr();
+        }
+        function upcurr() {
+            var uhh = $("#mode").val();
+            var bid = parseInt($("#cbid").val());
+            var upbid = parseInt($("#upcbid").val());
+            var combBid = bid + upbid;
+            var id = $("#cId").val();
+            
+            var token = $('[name=__RequestVerificationToken]').val();
+            $.ajax({
+                url: '@Url.Action("Auction","Home")',
+                data: { __RequestVerificationToken: token, 'newbid': combBid, 'Id': id},
+                type: 'POST',
+                success: function (data) {
+                    $("#popup").html(data);
+                }
+            });
+        }
+                                    @*$.ajax({
+                                        url: '@Url.Action("Auction", "Home")', // to get the right path to controller from TableRoutes of Asp.Net MVC
+                                        dataType: "json", //to work with json format
+                                        type: "POST", //to do a post request 
+                                        contentType: 'application/json;', //define a contentType of your request
+                                        cache: false, //avoid caching results
+                                        data: '{ auctionModel: ' + uhh + '}', // here you can pass arguments to your request if you need
+                                        success: function (data) {
+                                        if (data.success) { 
+                                                alert(data.message);
+                                        }
+                                    },
+                                        error: function (xhr) {
+                                            alert(xhr.toString() + 'error');
+                                        }
+            });*@
+           
+        
+        
+    </script>
+}
+=======
 
 </body>
 
 
 </html>
+>>>>>>> parent of dbc9394... update-chan
