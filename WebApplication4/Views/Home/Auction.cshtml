@@ -84,12 +84,11 @@
 
                         <p style="font-weight: bold">Enter bid below:</p>
                         <input type="number" id="upcbid" min="0"><br /><br />
-                        <button id="Bidbutt" onclick="upvals(); nBid()" style="margin-left:5%;height:3em;width:8em;">Bid!</button>
+                        <button onclick="upvals()" style="margin-left:5%;height:3em;width:8em;">Bid!</button>
                         <input type="hidden" value="@item.prod_sbid" id="sbid">
                         <input type="hidden" value="@item.prod_cbid" id="cbid">
                         <input type="hidden" value="@item.Id" id="cId" />
                         <input type="hidden" id="prod_name" value="@item.prod_name" />
-                        <input type="hidden" id="hiddenfieldname">
                     </div>
                 </div>
             }
@@ -107,19 +106,26 @@
     <script src="~/Scripts/jquery.signalR-2.2.3.js"></script>
 
     <script type="text/javascript">
-                    
-        
 
-        
+            
+
+        var cntr = parseInt(0);
         //$(function () {
             //$('#playAudio').click(function () {
             $(document).ready(function () {
-                var prodNme = $("#prod_name").val()
                 var newVal = $("#livbid").val();
+                var prodNme = $("#prod_name").val()
 
-                var newUrl = '@Url.Action("PlayTextArea", "Home")?text=' + prodNme.toString() + ". Current bid! "+ newVal.toString();
-                //encodeURIComponent($('#inputText').text());
-                  
+                if (cntr == 0) {
+                    var newUrl = '@Url.Action("PlayTextArea", "Home")?text=' + prodNme.toString();
+                    //encodeURIComponent($('#inputText').text());
+                    cntr += 1;
+                    debugger
+                }
+                else {
+                    var newUrl = '@Url.Action("PlayTextArea", "Home")?text=' + "New bid! " + newVal.toString();
+                }
+
                 var new_audio = $(this).attr('rel');
                 var source = '<audio id="audio_player">';
                 source += '<source id="audio_player_wav" src="' + newUrl + '" type="audio/mp3" />';
@@ -127,13 +133,14 @@
                 debugger
                 //play it
                 setTimeout(function() {
-                    $('#divAudio_Player').html(source);
-                    debugger
+                            $('#divAudio_Player').html(source);
                     var aud = $('#audio_player').get(0);
                     aud.play();
              }, 500);
     });
 //});
+
+
 
         $(document).ready(function () {
             // Set the date we're counting down to
