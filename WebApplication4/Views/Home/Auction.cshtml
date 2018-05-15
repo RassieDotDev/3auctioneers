@@ -51,18 +51,9 @@
 
         <h3 style="color:#ffffff;text-align:center !important;">Current Item</h3>
 
-
-
-
-        <div id="show"></div>
-
-
-
-
         foreach (var item in Model)
         {
             if (item.prod_active == 1)
-
             {
                 <div class="row">
                     <div class="col-md-6">
@@ -84,7 +75,7 @@
                         <label>Minimum sale amount:</label><br />
                         <p>R @item.prod_sbid<br /></p>
                         <label>Current Bid:</label><br>
-                        <div id="currbid">@item.prod_cbid<br /><br /></div>
+                        <div id="currbid"><span>R </span>@item.prod_cbid<br /><br /></div>
                         <input type="hidden" value="@item.prod_cbid" id="livbid" />
 
 
@@ -94,15 +85,12 @@
                         <button onclick="upvals()" style="margin-left:5%;height:3em;width:8em;">Bid!</button>
                         <input type="hidden" value="@item.prod_sbid" id="sbid">
                         <input type="hidden" value="@item.prod_cbid" id="cbid">
-                        <input type="hidden" value="@item.Id" id="cId">
-                        <input type="hidden" value="@Model" id="combBid">
+                        <input type="hidden" value="@item.Id" id="cId" />
 
                     </div>
                 </div>
             }
         }
-    }
-
     }
 </body>
 
@@ -111,10 +99,9 @@
 
 
 @section scripts{
-    <script src="~/Scripts/jquery-1.10.2.js"></script>
-    <script src="~/Scripts/jquery.signalR-2.2.3.js"></script>
 
     <script type="text/javascript">
+
 
             var con = $.hubConnection();
             var hub = con.createHubProxy('LiveBid');
@@ -132,7 +119,6 @@
             //$('#playAudio').click(function () {
             $(document).ready(function () {
                 var newVal = $("#livbid").val();
-                debugger;
                 var newUrl = '@Url.Action("PlayTextArea", "Home")?text=' + "New bid! " + newVal.toString();
                 //encodeURIComponent($('#inputText').text());
 
@@ -157,7 +143,7 @@
             var input = document.getElementById("date").value;
             var parts = input.split("/");
             var partsv2 = parts[2].split(" ");
-            var date = parts[0] + " " + parts[1] + " " + partsv2[0] + ", " + partsv2[1];
+            var date = parts[1] + " " + parts[0] + " " + partsv2[0] + ", " + partsv2[1];
             var dates = new Date(date).toString();
             var countDownDate = new Date(dates).getTime();
 
@@ -179,17 +165,13 @@
 
 
                 // If the count down is finished, write some text
-                if (distance < 0) {
-                    if (cbid >= sbid) {
-                        clearInterval(x);
-                        document.getElementById("demo").innerHTML = "SOLD!";
-                    }
-                    else {
-                        clearInterval(x);
+                if (distance <= 0) {
 
-                        location.reload();
-                    }
-                }
+                    clearInterval(x);
+                    document.getElementById("demo").innerHTML = "Sold at R" + $("#cbid").val();
+                    upd()
+                }  
+                
                 else if (distance <= 20) {
                     var newUrl = '@Url.Action("TimerAud", "Home")?text='+ "Going once, Going twice,  SOLD!"
 
@@ -208,7 +190,29 @@
             }, 1000);
         });
 
-        var combBid = 0;
+        function upd() {
+            var id = parseInt($("#cId").val());
+
+            var newId = id + 1;
+            var token = $('[name=__RequestVerificationToken]').val();
+                    $.ajax({
+                        url: '@Url.Action("AuctionPost", "Home")',
+                        data: { __RequestVerificationToken: token, 'newId': newId, 'Id': id},
+                        type: 'POST',
+                        success: function (data) {
+                            
+                        }
+            });
+                    $.ajax({
+                        url: '@Url.Action("Delete", "Home")',
+                        data: { __RequestVerificationToken: token, 'Id': id},
+                        type: 'POST',
+                        success: function (data) {
+                            
+                        }
+                });
+                location.reload();
+        }
         function upvals() {
 
             var value = parseInt(document.getElementById("cbid").value);
