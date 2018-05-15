@@ -7,26 +7,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-    <fieldset>
-        @if (Session["user_name"] != null)
-        {
+<fieldset>
+    @if (Session["user_name"] != null)
+    {
         <legend>
             <text style="font-weight:bold;font-family:Montserrat;font-size:24pt">
                 Welcome @Session["user_name"].ToString()
             </text>
             <text style="margin-left:50%;">@Html.ActionLink("Logout", "Login", "Login", null, new { @class = "btn btn-default", @style = "font-size:16pt;width:8em;height:2em;text-align:center" })</text>
         </legend>
-        }
-        </fieldset>
-    <html>
-    <head>
-        <title>3 Auctioneers</title>
-        <link href="~/Content/jquery.nice-number.css" rel="stylesheet" />
-    </head>
-    <body>
+    }
+</fieldset>
+<html>
+<head runat ="server">
+    <title>3 Auctioneers</title>
+    <link href="~/Content/jquery.nice-number.css" rel="stylesheet" />
+</head>
+<body>
 
-        @using (Html.BeginForm())
-        {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <h3 style="color:#ffffff;text-align:center !important;">Current Item</h3>
@@ -56,14 +56,14 @@
         <button onclick="upcurr()" style="margin-left:5%;height:3em;width:8em;" class="btn btn-default">Bid!</button>
 
         <div id="show"></div>
-        }
+    }
 
 
-        @{
-            foreach (var item in Model)
+    @{
+        foreach (var item in Model)
+        {
+            if (item.prod_active == 1)
             {
-                if (item.prod_active == 1)
-                {
                 <div class="row">
                     <div class="col-md-6">
                         <img src="@(item.prod_pic)" width="350" height="350" />
@@ -81,7 +81,26 @@
                         <label>Minimum sale amount:</label><br />
                         <p>R @item.prod_sbid<br /></p>
                         <label>Current Bid:</label><br />
-                        <p>R  @item.prod_cbid<br /><br /></p>
+                        <p id="curbid">R <br /><br /></p>
+                        <script src="~/Scripts/jquery-1.10.2.js"></script>
+                        <script src="~/Scripts/jquery.signalR-2.2.3.js"></script>
+                        <script type="text/javascript" >
+                            $(function () {
+                                var con = $.hubConnection();             
+                                var hub = con.createHubProxy('LiveBid');
+                                hub.on('onBidRecorded', function(i) {
+                                    $('#curbid').text(i);
+                                });
+                                con.start(function () {
+                                    hub.invoke('AddBid');
+                                    
+                                });
+                                
+
+                            })
+
+
+                        </script>
                         <input type="hidden" value="@item.prod_sbid" id="sbid">
                         <input type="hidden" value="@item.prod_cbid" id="cbid">
                         <input type="hidden" value="@item.Id" id="cId">
@@ -131,12 +150,12 @@
                         </script>
                     </div>
                 </div>
-                }
             }
         }
+    }
 
 
-    </body>
+</body>
 
 
 </html>
