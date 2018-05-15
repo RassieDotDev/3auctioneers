@@ -14,14 +14,9 @@ using System.Speech.Synthesis;
 using WebApplication4.Models;
 using NAudio.Lame;
 using NAudio.Wave;
-using System;
 using System.Globalization;
-using System.IO;
 using System.Speech.AudioFormat;
-using System.Speech.Synthesis;
 using System.Threading;
-using System.Web;
-using System.Web.Mvc;
 
 namespace WebApplication4.Controllers
 {
@@ -54,8 +49,17 @@ namespace WebApplication4.Controllers
             return View();
         }
 
+        // POST: Item_table/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            Item_table item_table = db.Item_table.Find(id);
+            db.Item_table.Remove(item_table);
+            db.SaveChanges();
+            return RedirectToAction("Auction");
+        }
 
-       
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -65,7 +69,6 @@ namespace WebApplication4.Controllers
                         select m;
             if (newbid == null)
             {
-                
                 return View(price.ToList());
             }
             else
@@ -81,6 +84,47 @@ namespace WebApplication4.Controllers
                         dbContextTransaction.Commit();
                         var upInfo = from m in db.Item_table
                                     select m;
+                        return View(upInfo.ToList());
+                    }
+                    catch (Exception /*ex*/)
+                    {
+                        return View(price.ToList());
+                    }
+                }
+            }
+
+        }
+
+        [HttpPost,ActionName("AuctionPost")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Auction(int? newId, int? Id)
+        {
+            var price = from m in db.Item_table
+                        select m;
+            if (Id == null)
+            {
+                return View(price.ToList());
+            }
+            else
+            {
+                using (var dbContextTransaction = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        Item_table f = (from data in db.Item_table where data.Id == Id select data).FirstOrDefault();
+                        f.prod_active = 0;
+                        Item_table newact = null;
+                        do
+                        {
+                            newact = (from data in db.Item_table where data.Id == newId select data).FirstOrDefault();
+                            newId++;
+                        } while (newact == null);
+                        newact.prod_active = 1;
+                        db.SaveChanges();
+
+                        dbContextTransaction.Commit();
+                        var upInfo = from m in db.Item_table
+                                     select m;
                         return View(upInfo.ToList());
                     }
                     catch (Exception /*ex*/)
