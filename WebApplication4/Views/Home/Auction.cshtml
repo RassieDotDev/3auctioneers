@@ -69,9 +69,12 @@
                         <h3 id="prod-name">@item.prod_name</h3>
                         <p style="font-weight: bold">
                             Time Remaining: <div id="demo">
+                                                </div>
+                                            <div id="aud">
                                                 <audio id="audio_player1">
-                                                     <source id="audio_player_wav1" src="@Url.Action("TimerAud", "Home", new { text = "type something in first" })" type="audio/mp3" />
-                                            </audio></div>
+                                                <source id="audio_player_wav1" src="@Url.Action("TimerAud", "Home", new { text = "type something in first" })" type="audio/mp3" />
+                                                </audio>
+                                            </div>
                         </p>
                         <input type="hidden" value="@item.prod_time" id="date">
                         <label>Description:</label><br />
@@ -122,15 +125,21 @@
                 hub.invoke('AddBid', livvy);
             });
     
-
+        var cntr = parseInt(0);
         //$(function () {
             //$('#playAudio').click(function () {
             $(document).ready(function () {
                 var newVal = $("#livbid").val();
+                var prodNme = $("#prod_name").val()
                 
-                var newUrl = '@Url.Action("PlayTextArea", "Home")?text=' + "New bid! " + newVal.toString();
-                //encodeURIComponent($('#inputText').text());
-
+                if (cntr == 0) {
+                    var newUrl = '@Url.Action("PlayTextArea", "Home")?text=' + prodNme.toString();
+                    //encodeURIComponent($('#inputText').text());
+                    cntr += 1;
+                }
+                else {
+                    var newUrl = '@Url.Action("PlayTextArea", "Home")?text=' + "New bid! " + newVal.toString();
+                }
 
                 var new_audio = $(this).attr('rel');
                 var source = '<audio id="audio_player">';
@@ -145,6 +154,7 @@
     });
 //});
 
+        
 
         $(document).ready(function () {
             // Set the date we're counting down to
@@ -172,52 +182,19 @@
                 // Display the result in the element with id="demo"
                 document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
 
-
                 // If the count down is finished, write some text
-                if (distance < 20000) {
-                    var newUrl = '@Url.Action("TimerAud", "Home")?text='+ "Going once, Going twice,  SOLD!"
-
-                    var new_audio = $(this).attr('rel');
-                    var source = '<audio id="audio_player1">';
-                    source += '<source id="audio_player_wav1" src="' + newUrl + '" type="audio/mp3" />';
-                    source += '</audio>';
-                    //play it
-            setTimeout(function () {
-                $('#demo').html(source);
-                var aud = $('#audio_player').get(0);
-                aud.play();
-            }, 500);
-                }
-                else if (distance < 0) {
+                if (distance < 0) {
                     if (cbid >= sbid) {
                         clearInterval(x);
                         document.getElementById("demo").innerHTML = "SOLD!";
                     }
                     else {
                         clearInterval(x);
-
                         location.reload();
                     }
-                } 
+                }
             }, 1000);
         });
-
-        function finBid() {
-        var newUrl = '@Url.Action("TimerAud", "Home")?text='+ "Going once, Going twice,  SOLD!"
-
-                    var new_audio = $(this).attr('rel');
-                    var source = '<audio id="audio_player1">';
-                    source += '<source id="audio_player_wav1" src="' + newUrl + '" type="audio/mp3" />';
-                    source += '</audio>';
-                    //play it
-            setTimeout(function () {
-                $('#demo').html(source);
-                var aud = $('#audio_player').get(0);
-                aud.play();
-            }, 500);
-        }
-
-
 
         var combBid = 0;
         function upvals() {
