@@ -25,7 +25,7 @@
                                     $('#curbid').text(i);
                                 });
                                 con.start(function () {
-                                    hub.invoke('addBid');
+                                    hub.invoke('AddBid');
                                     
                                 });
                             })

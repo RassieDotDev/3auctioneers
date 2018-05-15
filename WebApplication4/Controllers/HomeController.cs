@@ -44,9 +44,12 @@ namespace WebApplication4.Controllers
             return View();
         }
 
+
+       
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Auction(Item_table item_table, double? newbid, int? Id)
+        public ActionResult Auction(double? newbid, int? Id)
         {
             var price = from m in db.Item_table
                         select m;

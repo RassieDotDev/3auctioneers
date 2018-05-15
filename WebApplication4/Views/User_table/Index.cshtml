@@ -43,29 +43,32 @@
         <div class="col-md-6 pull-right rightcol" id="rightcol">
 
             <div class="col-md-12" id="formdiv">
-                <form method=get>
-                    Username:<br />
-                    <input type="text" name="usern" id="usern"required /><br />
-                    Password:<br />
-                    <input type="password" name="pass" id ="pass" required /><br /><br />
-                    @{
-                        
+              
+                   
+                    @Html.BeginForm()
+                    {
+
+                         Username:<br />
+                        <input type="text" name="usern" id="usern"required /><br />
+                        Password:<br />
+                        <input type="password" name="pass" id ="pass" required /><br /><br />
                         @foreach (var item in Model)
                         {
                             if(item.user_name == Request["usern"] && item.user_password == Request["pass"])
                             {
-
+                                <input type="hidden" id="usrn" value="@item.Id"/>
                             }
                             else
                             {
-                                <p>"Incorrect username or password. Please try again"</p>
+                                 <input type="hidden" id="usrn" value="0"/>
                             }
                         }
-                    }
 
                     <input type="submit" name="sub" class="btn" /><p style="display: inline;"> or <button type="button" class="btn" value="Register" data-toggle="modal" data-target="#regModal"> Register </button>&nbsp; a new account</p><br /><br />
-                </form>
-                
+                    }
+
+                    
+               
             </div>
 
         </div>
@@ -74,4 +77,11 @@
     </div>
 </body>
 </html>
+
+@section scripts{
+        
+    
+    
+    
+    }
 

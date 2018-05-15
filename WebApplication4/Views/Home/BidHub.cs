@@ -12,19 +12,14 @@ namespace WebApplication4
     [HubName("LiveBid")]
     public class BidHub : Hub
     {
-        private static int bidprice =0;
-        public void AddBid()
+        
+        private static double bidprice = 0;
+        public void AddBid(Item_table newbid)
         {
-            bidprice += 1; 
+            bidprice = newbid.prod_cbid;     
 
             this.Clients.All.onBidRecorded(bidprice);
         }
-
-        public override Task OnDisconnected(bool stopCalled)
-        {
-            bidprice -= 1;
-            this.Clients.All.onBidRecorded(bidprice);
-            return base.OnDisconnected(stopCalled);
-        }
+        
     }
 }
