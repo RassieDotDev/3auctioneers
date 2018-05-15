@@ -286,6 +286,7 @@
     <Content Include="Models\AuctionDBModel.edmx.diagram">
       <DependentUpon>AuctionDBModel.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\3Auctioneers - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

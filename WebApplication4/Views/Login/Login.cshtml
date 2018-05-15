@@ -47,42 +47,42 @@
 
                 @using (Html.BeginForm("Login", "Login", FormMethod.Post))
     {
-                <fieldset>
-                   
+            <fieldset>
 
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true)
-                    @if (@ViewBag.Message != null)
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                @if (@ViewBag.Message != null)
     {
-                <div style="border: 1px solid red">
-                    @ViewBag.Message
-                </div>
+            <div style="border: 1px solid red">
+                @ViewBag.Message
+            </div>
 }
-                    <div class="row" id="login-row" style="padding:10px;">
-                        Username
-                        @Html.TextBoxFor(a => a.user_name, new { htmlAttributes = new { @class = "control-label", @type = "text", @id = "login-field" } })
-                        @Html.ValidationMessageFor(a => a.user_name)
-                    </div>
+                <div class="row" id="login-row" style="padding:10px;">
+                    Username
+                    @Html.TextBoxFor(a => a.user_name, new { htmlAttributes = new { @class = "control-label", @type = "text", @id = "login-field", @required = "required" } })
+                    @Html.ValidationMessageFor(a => a.user_name)
+                </div>
 
-                    <div class="row" id="login-row" style="padding:10px;">
-                        Password
-
-
-                        @Html.EditorFor(a => a.user_password, new { htmlAttributes = new { @class = "control-label", @type = "password", @id = "login-field" } })
+                <div class="row" id="login-row" style="padding:10px;">
+                    Password
 
 
-                        @Html.ValidationMessageFor(a => a.user_password)
+                    @Html.EditorFor(a => a.user_password, new { htmlAttributes = new { @class = "control-label", @type = "password", @id = "login-field", @required = "required" } })
 
-                    </div>
-                    <div class="row" id="login-row" style="padding:10px;">
-                        <input type="submit" value="Login" name="sub" class="btn" />
-                        <p style="display: inline; font-size:10px; padding-left: 10px;">  or <button type="button" class="btn" value="Register" data-toggle="modal" data-target="#regModal"> Register </button>&nbsp; a new account</p><br /><br />
-                    </div>
-                  </fieldset>
+
+                    @Html.ValidationMessageFor(a => a.user_password)
+
+                </div>
+                <div class="row" id="login-row" style="padding:10px;">
+                    <input type="submit" value="Login" name="sub" class="btn" />
+                    <p style="display: inline; font-size:10px; padding-left: 10px;">  or @Html.ActionLink("Register", "Create", "User_table") &nbsp; a new account</p><br /><br />
+                </div>
+            </fieldset>
+
+
+
            
-
-
-
 }
 
 
