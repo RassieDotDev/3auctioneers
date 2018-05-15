@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Speech.Synthesis;
 using WebApplication4.Models;
 
 namespace WebApplication4.Controllers
@@ -85,6 +86,15 @@ namespace WebApplication4.Controllers
             return View(price.ToList());
         }
 
-        
+        protected void btnVoice_Click(object sender, EventArgs e)
+        {
+            // creating the object of SpeechSynthesizer class  
+            SpeechSynthesizer sp = new SpeechSynthesizer();
+            //setting volume   
+            sp.Volume = 100;
+            String txtMsg = "New Bid!";
+            //ing text box text to SpeakAsync method   
+            sp.SpeakAsync(txtMsg);
+        }
     }
 }

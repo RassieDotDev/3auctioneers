@@ -19,7 +19,9 @@
     }
 </fieldset>
 <html>
-<head runat ="server">
+
+<head>
+
     <title>3 Auctioneers</title>
     <link href="~/Content/jquery.nice-number.css" rel="stylesheet" />
 </head>
@@ -53,7 +55,7 @@
                                     });
                                 }
         </script>
-        <button onclick="upcurr()" style="margin-left:5%;height:3em;width:8em;" class="btn btn-default">Bid!</button>
+        <asp:button ID="btVoice" runat="server" style="margin-left:5%;height:3em;width:8em;" class="btn btn-default" onclick="btnVoice_Click, upcurr">Bid!</asp:button>
 
         <div id="show"></div>
     }
