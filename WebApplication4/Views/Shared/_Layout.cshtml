@@ -34,6 +34,8 @@
                                 @{ if (Session["user_name"] != null && Session["isActive"] != null)
                                 {
                                 <legend style="border: none !important;">
+                                    @Html.ActionLink("Live Auction", "Auction", "Home", null, new { @class = "", @style = "font-size:14px;text-align:center; color: #999; text-decoration: none; padding: 10px;" })
+
                                     @Html.ActionLink("Catalogue", "Index", "Item_table", null, new { @class = "", @style = "font-size:14px;text-align:center; color: #999; text-decoration: none; padding: 10px;" })
 
                                     @Html.ActionLink("Add Item", "Create", "Item_table", null, new { @class = "", @style = "font-size:14px;text-align:center; color: #999; text-decoration: none; padding: 10px;" })
