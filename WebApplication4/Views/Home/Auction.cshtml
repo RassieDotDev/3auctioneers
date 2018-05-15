@@ -50,17 +50,6 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <h3 style="color:#ffffff;text-align:center !important;">Current Item</h3>
-
-        <asp:button ID="btVoice" runat="server" style="margin-left:5%;height:3em;width:8em;" class="btn btn-default" onclick="btnVoice_Click, upcurr">Bid!</asp:button>
-
-
-        <p style="font-weight: bold">Enter bid below:</p>
-
-        <input type="text" id="upcbid"><br /><br />
-
-        <button ID="btVoice" runat="server" style="margin-left:5%;height:3em;width:8em;" class="btn btn-default" onclick="AuctionUpdate(), upcurr()">Bid!</button>
-
-
         <div id="show"></div>
 
 
@@ -125,7 +114,7 @@
             var con = $.hubConnection();
             var hub = con.createHubProxy('LiveBid');
             var livvy = $("#combBid").val();
-            debugger;
+            
             hub.on('onBidRecorded', function (i) {
                 $('#currbid').text(i);
             });
@@ -138,7 +127,7 @@
             //$('#playAudio').click(function () {
             $(document).ready(function () {
                 var newVal = $("#livbid").val();
-                debugger;
+                
                 var newUrl = '@Url.Action("PlayTextArea", "Home")?text=' + "New bid! " + newVal.toString();
                 //encodeURIComponent($('#inputText').text());
 
@@ -175,7 +164,7 @@
 
                 // Find the distance between now an the count down date
                 var distance = countDownDate - now;
-
+                //debugger
                 // Time calculations for days, hours, minutes and seconds
                 var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 var seconds = Math.floor((distance % (1000 * 60)) / 1000);
@@ -185,7 +174,21 @@
 
 
                 // If the count down is finished, write some text
-                if (distance < 0) {
+                if (distance < 20000) {
+                    var newUrl = '@Url.Action("TimerAud", "Home")?text='+ "Going once, Going twice,  SOLD!"
+
+                    var new_audio = $(this).attr('rel');
+                    var source = '<audio id="audio_player1">';
+                    source += '<source id="audio_player_wav1" src="' + newUrl + '" type="audio/mp3" />';
+                    source += '</audio>';
+                    //play it
+            setTimeout(function () {
+                $('#demo').html(source);
+                var aud = $('#audio_player').get(0);
+                aud.play();
+            }, 500);
+                }
+                else if (distance < 0) {
                     if (cbid >= sbid) {
                         clearInterval(x);
                         document.getElementById("demo").innerHTML = "SOLD!";
@@ -195,24 +198,26 @@
 
                         location.reload();
                     }
-                }
-                else if (distance <= 20) {
-                    var newUrl = '@Url.Action("TimerAud", "Home")?text='+ "Going once, Going twice,  SOLD!"
+                } 
+            }, 1000);
+        });
+
+        function finBid() {
+        var newUrl = '@Url.Action("TimerAud", "Home")?text='+ "Going once, Going twice,  SOLD!"
 
                     var new_audio = $(this).attr('rel');
                     var source = '<audio id="audio_player1">';
                     source += '<source id="audio_player_wav1" src="' + newUrl + '" type="audio/mp3" />';
                     source += '</audio>';
                     //play it
-                    setTimeout(function () {
-                        $('#demo').html(source);
-                        var aud = $('#audio_player').get(0);
-                        aud.play();
-                    }, 500);
+            setTimeout(function () {
+                $('#demo').html(source);
+                var aud = $('#audio_player').get(0);
+                aud.play();
+            }, 500);
+        }
 
-                }
-            }, 1000);
-        });
+
 
         var combBid = 0;
         function upvals() {
@@ -233,7 +238,7 @@
             combBid = bid + upbid;
 
             var id = $("#cId").val();
-            debugger;
+            
             var token = $('[name=__RequestVerificationToken]').val();
             $.ajax({
                 url: '@Url.Action("Auction", "Home")',
