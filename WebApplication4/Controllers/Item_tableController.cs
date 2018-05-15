@@ -68,7 +68,7 @@ namespace WebApplication4.Models
                 if (file != null && file.ContentLength > 0)
                         try
                         {
-                            path = "\\Images\\" + Path.GetFileName(file.FileName);
+                            path = "~/Images/" + Path.GetFileName(file.FileName);
                             file.SaveAs(path);
                             ViewBag.Message = "File uploaded successfully";
                         }
@@ -83,7 +83,7 @@ namespace WebApplication4.Models
                 item_table.prod_pic = path;
                 db.Item_table.Add(item_table);
                 db.SaveChanges();
-                return RedirectToAction("Auction","Home");
+                return RedirectToAction("Index","Item_table");
 
             }
             return View(item_table);

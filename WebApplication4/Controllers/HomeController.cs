@@ -14,14 +14,11 @@ using System.Speech.Synthesis;
 using WebApplication4.Models;
 using NAudio.Lame;
 using NAudio.Wave;
-using System;
+
 using System.Globalization;
-using System.IO;
+
 using System.Speech.AudioFormat;
-using System.Speech.Synthesis;
 using System.Threading;
-using System.Web;
-using System.Web.Mvc;
 
 namespace WebApplication4.Controllers
 {

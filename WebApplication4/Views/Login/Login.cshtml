@@ -4,44 +4,93 @@
     Layout = null;
 }
 
+<html>
+<head>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Montserrat">
+    <link rel="stylesheet" href="~/Content/auctionsite.css">
+    <link rel="stylesheet" href="~/Content/bootstrap.css">
+    <link rel="stylesheet" href="~/Content/style.css">
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <title>3 Auctioneers</title>
+</head>
+<body>
+    <div class="row">
 
-@using (Html.BeginForm("Login", "Login", FormMethod.Post))
-{
-    <fieldset>
-        <legend>Mvc Simple Login Application Demo</legend>
-
-        @Html.AntiForgeryToken()
-        @Html.ValidationSummary(true)
-        @if (@ViewBag.Message != null)
-        {
-            <div style="border: 1px solid red">
-                @ViewBag.Message
+        <div class="col-md-6 pull-left" style="padding-top: 3%;">
+            <div>
+                <div class="col-sm-8 col-md-9">
+                    <div class="page-title">
+                        <div class="capt">
+                            <h1 class="lead">3 AUCTIONEERS</h1>
+                        </div>
+                        <div class="bg-title"></div>
+                    </div>
+                </div>
             </div>
-        }
-        <table>
-            <tr>
-                <td>@Html.LabelFor(a => a.user_name)</td>
-                <td>@Html.TextBoxFor(a => a.user_name)</td>
-                <td>@Html.ValidationMessageFor(a => a.user_name)</td>
-            </tr>
-            <tr>
-                <td>
-                    @Html.LabelFor(a => a.user_password)
-                </td>
-                <td>
-                    @Html.EditorFor(a => a.user_password, new { htmlAttributes= new { @class = "control-label", @type = "password" }})
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(a => a.user_password)
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>
-                    <input type="submit" value="Login" />
-                </td>
-                <td></td>
-            </tr>
-        </table>
-    </fieldset>
-}  
+            <div style="top: 25%; left: 25%; padding-left: 30%; padding-right: 30%; ">
+                <p id="site-info">
+                    Welcome to the 3 Auctioneers auctioneering auctionsite.<br />
+                    Here at the 3 Auctioneers we auction off goods! You never would have guessed!<br />
+                    If you have a login, please do so and let the Auction begin! Otherwise please register as a new user.<br />
+                    Should you have any queries or problems, please contact our administrator who works 24/7 365 at <a href="www.google.com">CLICK HERE</a>
+                </p>
+            </div>
+
+
+        </div>
+        <div class="col-md-6 pull-right rightcol" id="rightcol">
+
+            <div class="col-md-12" id="formdiv">
+
+
+                @using (Html.BeginForm("Login", "Login", FormMethod.Post))
+    {
+                <fieldset>
+                   
+
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    @if (@ViewBag.Message != null)
+    {
+                <div style="border: 1px solid red">
+                    @ViewBag.Message
+                </div>
+}
+                    <div class="row" id="login-row" style="padding:10px;">
+                        Username
+                        @Html.TextBoxFor(a => a.user_name, new { htmlAttributes = new { @class = "control-label", @type = "text", @id = "login-field" } })
+                        @Html.ValidationMessageFor(a => a.user_name)
+                    </div>
+
+                    <div class="row" id="login-row" style="padding:10px;">
+                        Password
+
+
+                        @Html.EditorFor(a => a.user_password, new { htmlAttributes = new { @class = "control-label", @type = "password", @id = "login-field" } })
+
+
+                        @Html.ValidationMessageFor(a => a.user_password)
+
+                    </div>
+                    <div class="row" id="login-row" style="padding:10px;">
+                        <input type="submit" value="Login" name="sub" class="btn" />
+                        <p style="display: inline; font-size:10px; padding-left: 10px;">  or <button type="button" class="btn" value="Register" data-toggle="modal" data-target="#regModal"> Register </button>&nbsp; a new account</p><br /><br />
+                    </div>
+                  </fieldset>
+           
+
+
+
+}
+
+
+            </div>
+
+        </div>
+
+
+    </div>
+</body>
+</html>

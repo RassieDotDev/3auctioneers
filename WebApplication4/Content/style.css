@@ -178,8 +178,8 @@ a:hover{
 	-ms-transform:skewX(-14deg);
 	-o-transform:skewX(-14deg);
 	-moz-transform:skewX(-14deg);
-	-webkit-box-shadow: 8px 8px 0 2px rgba(0,0,0,.2);
-	box-shadow: 8px 8px 0 2px rgba(0,0,0,.2);
+	-webkit-box-shadow: 8px 8px 0 2px rgba(0,0,0,.4);
+	box-shadow: 8px 8px 0 2px rgba(0,0,0,.4);
 }
 .page-title .capt{
 	position:relative;

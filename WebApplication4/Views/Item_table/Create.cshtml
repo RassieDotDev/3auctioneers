@@ -12,7 +12,12 @@
     @if (Session["user_name"] != null)
     {<text>
             Welcome @Session["user_name"].ToString() </text>
-}
+    }
+    else
+    {
+        Response.Redirect("~/Login/Login");
+
+    }
 </fieldset>
 
 <!DOCTYPE html>

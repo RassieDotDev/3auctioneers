@@ -11,17 +11,20 @@
 
 @foreach (var item in Model) {
    
-        <div class="row">
+        <div class="row" style="padding: 20px;">
             <div class"="col-md-6">
-                <img src="@(item.prod_pic)" width="350" height="350" />
-                @Html.DisplayFor(modelItem => item.prod_name)
-        
-                @Html.DisplayFor(modelItem => item.prod_des)
-       
-                @Html.DisplayFor(modelItem => item.prod_sbid)
-        
-                @Html.DisplayFor(modelItem => item.prod_cbid)
+                <img src="@(item.prod_pic)" width="200" height="200" />
+                <ul style="text-decoration: none; list-style: none; display: inline-block;">
+                    <li>Name: @Html.DisplayFor(modelItem => item.prod_name)</li>
+
+                    <li>Description: @Html.DisplayFor(modelItem => item.prod_des)</li>
+
+                    <li>Starting Bid: @Html.DisplayFor(modelItem => item.prod_sbid)</li>
+
+                    
+                </ul>
             </div>
+
        </div>
 }
 
