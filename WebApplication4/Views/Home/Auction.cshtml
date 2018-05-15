@@ -108,29 +108,23 @@
     <script type="text/javascript">
 
             
-
-        var cntr = parseInt(0);
+        
         //$(function () {
             //$('#playAudio').click(function () {
             $(document).ready(function () {
                 var newVal = $("#livbid").val();
                 var prodNme = $("#prod_name").val()
 
-                if (cntr == 0) {
-                    var newUrl = '@Url.Action("PlayTextArea", "Home")?text=' + prodNme.toString();
+                    var newUrl = '@Url.Action("PlayTextArea", "Home")?text=' + prodNme.toString() + ". current bid! " + newVal.toString();
                     //encodeURIComponent($('#inputText').text());
-                    cntr += 1;
-                    debugger
-                }
-                else {
-                    var newUrl = '@Url.Action("PlayTextArea", "Home")?text=' + "New bid! " + newVal.toString();
-                }
+                  
+                  
 
                 var new_audio = $(this).attr('rel');
                 var source = '<audio id="audio_player">';
                 source += '<source id="audio_player_wav" src="' + newUrl + '" type="audio/mp3" />';
                 source += '</audio>';
-                debugger
+         
                 //play it
                 setTimeout(function() {
                             $('#divAudio_Player').html(source);
