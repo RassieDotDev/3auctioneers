@@ -23,7 +23,20 @@
                     <span class="icon-bar"></span>
                 </button>
                 <text style="font-weight:normal;font-family:sans-serif;font-size:18pt; color: #ddd; ">
-                    Welcome @Session["user_name"].ToString()
+                   
+                    @{ if (Session["user_name"] != null && Session["isActive"] != null)
+                        {
+                    <legend style="border: none !important;">
+
+                        Welcome @Session["user_name"].ToString()
+                    </legend>
+                            }
+                            else
+                            {
+
+                                Response.Redirect("~/Login/Login");
+
+                            } }
                 </text>
             </div>
             <div class="navbar-collapse collapse" >
