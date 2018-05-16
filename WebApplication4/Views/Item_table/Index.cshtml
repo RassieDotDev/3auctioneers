@@ -9,8 +9,9 @@
 <h2>Catalogue</h2>
 <table class="table">
 
-@foreach (var item in Model) {
-   
+    @foreach (var item in Model)
+    {
+
         <div class="row" style="padding: 20px;">
             <div class"="col-md-6">
                 <img src="@(item.prod_pic)" width="200" height="200" />
@@ -21,11 +22,11 @@
 
                     <li>Starting Bid: @Html.DisplayFor(modelItem => item.prod_sbid)</li>
 
-                    
                 </ul>
             </div>
 
-       </div>
-}
+        </div>
+    }
+    
 
 </table>

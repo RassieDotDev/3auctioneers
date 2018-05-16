@@ -44,28 +44,29 @@
                                        "Item_table",
                                        FormMethod.Post,
                     new { enctype = "multipart/form-data" }))
-                {
-            <label> Name:</label>
-                @Html.EditorFor(model => model.prod_name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.prod_name, "", new { @class = "text-danger" })
-                <label>Starting Bid:</label>
-                @Html.EditorFor(model => model.prod_sbid, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.prod_sbid, "", new { @class = "text-danger" })
-                <label>Description:</label>
-                @Html.EditorFor(model => model.prod_des, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.prod_des, "", new { @class = "text-danger" })
+                   {
+                    <label> Name:</label>
+                    @Html.EditorFor(model => model.prod_name, new { htmlAttributes = new { @class = "form-control", id ="name" } })
+                    @Html.ValidationMessageFor(model => model.prod_name, "", new { @class = "text-danger" })
+                    <label>Starting Bid:</label>
+                    @Html.EditorFor(model => model.prod_sbid, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.prod_sbid, "", new { @class = "text-danger" })
+                    <label>Description:</label>
+                    @Html.EditorFor(model => model.prod_des, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.prod_des, "", new { @class = "text-danger" })
 
-                
-                @Html.AntiForgeryToken()
-                <label for="file">Upload Image:</label>
-                <input type="file" name="file" id="file" /><br><br>
-                <input class="btn" id="submit-item" type="submit" name="sub" value="Submit" />
-                <br><br>
-                @ViewBag.Message
+                    
+                    @Html.AntiForgeryToken()
+                    <label for="file">Upload Image:</label>
+                    <input type="file" name="file" id="file" /><br><br>
+                    <input class="btn" id="submit-item" type="submit" name="sub" value="Submit" onclick="up()"/>
+                    <br><br>
+                    @ViewBag.Message
                 }
 
    
             </div>
+            
 
             
         </div>
